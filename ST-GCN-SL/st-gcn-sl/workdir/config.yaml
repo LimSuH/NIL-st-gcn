@@ -1,0 +1,47 @@
+# command line: main.py preprocessing -c config/preproc-27.yaml
+
+clean_workdir: false
+config: config/preproc-27.yaml
+debug: false
+debug_opts:
+    gendata_items: 5
+    gendata_joints: 27
+    pose_items: 5
+download: {}
+filter:
+    input_dir: ./skeleton
+    output_dir: ./filtered
+    points: 1, 2, 3, 5, 6, 88, 90, 92, 94, 96, 98, 100, 102, 104, 106, 108, 109, 111,
+        113, 115, 117, 119, 121, 123, 125, 127, 129
+input_dir: null
+metadata_file: /users/suhyeon/GitHub/ST-GCN-SL/st-gcn-sl/dai-asllvd.xlsx
+normalize:
+    channels: 3
+    input_dir: ./splitted
+    joints: 27
+    max_frames: 63
+    num_person: 1
+    output_dir: ./normalized
+    repeat_frames: true
+output_dir: null
+phases:
+- segment
+- skeleton
+- filter
+- split
+- normalize
+print_log: true
+save_log: true
+segment: {}
+skeleton:
+    input_dir: ./segmented
+    model_path: ./st-gcn/models
+    openpose: /home/lab/openpose/build
+    output_dir: ./skeleton
+split:
+    input_dir: ./filtered
+    output_dir: ./splitted
+    seed: 2
+    test: 20
+    val: 0
+work_dir: /users/suhyeon/GitHub/ST-GCN-SL/st-gcn-sl/workdir
