@@ -284,22 +284,19 @@ trining을 확인하기 위해서라면, 굳이 전처리 과정을 실행하지
 wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1fB4BMmewTI5-eNDI83mcOmIETPjVg56N' -O adllvd-skeleton-20.zip  
 unzip adllvd-skeleton-20.zip
 ```
-Neuron 3에는 /users/suhyeon/GitHub/ST-GCN-SL/st-gcn-sl/st-gcn/data/asllvd-skeleton-20/normalized 에 저장되어 있습니다.  
-그리고 config/sl에 있는 train-asllvd-skeleton-20.yaml, train-asllvd-skeleton.yaml 파일 안의 data path와 work directory를 Neuron3에 맞추어 모두 변경하였습니다.  
+Neuron 3에는 /users/suhyeon/GitHub/ST-GCN-SL/st-gcn-sl/st-gcn/data/asllvd-skeleton-20/normalized 에 저장되어 있습니다.   
   
    
-## 3. 학습 진행 확인
-사전에 제공된 학습 파일을 다운받아 학습이 잘 진행되는지 여부를 확인하였습니다.  
-pre-trained 모델을 다운받습니다.
-```
-wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1hCunDgMWgQmW49_dMZsbvvJlUj5-Qk_O' -O epoch1350_model.pt
-unzip epoch1350_model.pt
-```  
-Neuron3에 저장된 경로는 /users/suhyeon/GitHub/ST-GCN-SL/st-gcn-sl/st-gcn/work/st-gcn-sl/asllvd-skeleton-20/2020-05-12-22-45/ 입니다.  
-  
-다음으로 
+## 3. 학습 진행 확인  
 ```
 cd /users/suhyeon/GitHub/ST-GCN-SL/st-gcn-sl/st-gcn  
-python main.py -c config/sl/config.yaml --weights ./work/st-gcn-sl/asllvd-skeleton-20/2020-05-12-22-45
-```
-./work/st-gcn-sl/asllvd-skeleton-20/2020-05-12-22-45
+python main.py recognition -c config/sl/train-asllvd-skeleton-20.yaml --work_dir config/sl/
+```  
+위 명령은 새로운 모델을 training 합니다.
+실행 시 지정한 work_dir에 10epoch마다 모델 parameter을 저장합니다. 또한 work_dir에 config.yaml 파일이 생성됩니다.  
+이config 파일은 위의 명령으로 실행된 training 정보를 담고 있어, 다음에 같은 조건으로 학습을 진행할때 활용할 수 있습니다.  
+  
+  
+모델 깃허브 페이지에 따르면, test.yaml을 통해 모델 평가도 진행할 수 있다고 나와있으나 test.yaml 파일이 존재하지 않는 문제가 있습니다.  
+ST-GCN 모델에는 해당 파일이 존재하므로 참고해서 해결할 수 있을것으로 보입니다.  
+
