@@ -2,12 +2,12 @@
 ST-GCN을 수어 인식에 활용한 모델  
 [논문 링크](https://arxiv.org/abs/1901.11164)  
 
-1. [Dataset](https://github.com/LimSuH/NIL-st-gcn/edit/main/ST-GCN-SL_README.md#dataset)
-2. [Training]()
+[Dataset](https://github.com/LimSuH/NIL-st-gcn/edit/main/ST-GCN-SL_README.md#dataset)  
+[Training](https://github.com/LimSuH/NIL-st-gcn/edit/main/ST-GCN-SL_README.md#training)
 <br/><br/><br/>
   
   
-## Dataset  
+# Dataset  
 #### American SignLanguage Lexicon video Dataset(ASLLVD-skeleton)
 [ASLLVD 웹사이트](http://www.cin.ufpe.br/~cca5/asllvd-skeleton/)를 통해 ST-GCN-SL의 전처리 단계별 출력물을 다운로드 할 수 있습니다.  
 #### ASLLVD-skeleton-20  
@@ -45,7 +45,11 @@ ST-GCN-SL 모델은 다음과 같은 전처리 단계를 거칩니다.
 #### (1) Download  
 asllvd 데이터를 다운받습니다. 
 asllvd 데이터는 연속적인 수어 대화 영상과 메타 데이터 파일로 이루어져 있습니다.  
+  
+  
 ![image](https://user-images.githubusercontent.com/82634312/179709829-6fa41ae2-d5bb-4060-82f4-1d12be64d417.png)  
+  
+  
 메타데이터 파일은 main gloss, 수어 발화자, gloss를 포함하는 동영상 파일 이름, 영상 확장자 등을 항목으로 가집니다.  
 *연속적인 대화 영상이므로, 한 영상에 여러 gloss가 존재해 영상 기준이 아닌 gloss 기준으로 메타데이터 파일을 서술한것 같습니다.*  
 <br/>
@@ -56,11 +60,17 @@ gloss별로 영상을 분할합니다. 또한 동시에 분할한 영상별 glos
 <br/>
 #### (3) Estimate Skeleton  
 openpose를 이용해 영상에 스켈레톤을 적용합니다.  openpose는 Neuron3에 이미 다운되어 있으며, 위치는 '/home/lab/openpose/build'입니다. config 파일에서 자동으로 실행하므로 openpose의 위치는 크게 중요하지 않습니다.  
+  
+  
 ![keypoint_json](https://www.cin.ufpe.br/~cca5/img/openpose_coordinates.PNG)  
+  
+  
 모든 키포인트 좌표는 json 파일로 저장됩니다.  
 <br/>
 #### (4) Filter Keypoint  
 ![keypoint](https://www.cin.ufpe.br/~cca5/img/filtered_keypoints_hand.png)  
+  
+  
 모든 스켈레톤 키포인트를 사용하지 않으므로, 몸톤 5개, 각 손 11개로 총 27개의 키포인트 좌표를 추출합니다.  
 (3)의 출력물과 유사한 형태지만 좌표가 더 적습니다.  
 <br/>
@@ -100,8 +110,12 @@ bash setup.sh
 python main.py preprocessing -c config/preproc-27-save.yaml [--work_dir <work folder>]
 ```
 <br/>
-preproc-27-save.yaml파일과 preproc-27.yaml 두가지가 있는데, preproc-27.yaml파일은 한국 수어 데이터 적용을위해 segment단계까지 전처리 과정을 생략시킨 파일입니다.  
-이 파일로 실행시 오류가 일어나므로, 원본 파일인 preproc-27-save.yaml을 사용해 주세요.  
+asllvd-skeleton-preproc/config/ 디렉토리에는 preproc-27-save.yaml 파일과 preproc-27.yaml 두가지가 있습니다.  
+preproc-27.yaml 파일은 한국 수어 데이터 적용을위해 segment단계까지 전처리 과정을 생략시킨 파일입니다.  
+  
+  
+이 파일로 실행시 오류가 일어나므로, 전처리 실행 시 원본 파일인 preproc-27-save.yaml을 사용해 주세요.  
+preproc-27-save.yaml은 원본대로 asllvd 데이터셋으로 전처리를 진행합니다.  
 또한 제가 이용한 work_dir 위치는 **/users/suhyeon/GitHub/ST-GCN-SL/st-gcn-sl/workdir** 입니다.  
 <br/><br/>  
 
@@ -243,4 +257,49 @@ preproc-27-save.yaml 파일입니다.
 여기서는 원시 비디오 세트의 저장 위치가 /users/suhyeon/GitHub/ST-GCN-SL/original로 설정되어 있습니다.  
 이는 asllvd 세트가 저장되어있는 위치입니다.(역시 /dataset에 있는 asllvd와는 별개입니다)  
 
-<br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/>
+
+# Training  
+ST-GCN-SL 모델 실행 과정을 설명하였습니다.  
+모델이 가진 오류를 해결하고, 학습 진행을 위해 거친 과정을 서술하였습니다.  
+<br/>
+## 1. 오류 해결  
+st-gcn-sl 모델이 가진 오류를 해결하였습니다.  
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/141448b6-d733-41bc-89e6-4e94ac40b2de/Untitled.png)  
+pyyaml의 load 함수가 더이상 지원되지 않아 생긴 오류로, pyyaml 6.0.0을 삭제하고 낮은 버전으로 다시 설치하여 해결하였습니다.  
+  
+  
+그러나 pyyaml 오류를 고치기 위해 torchlight까지 함께 삭제 해야하는 과정이 있었습니다.  
+pip 로 다시 설치했지만, 각 모델들이 torchlight 라이브러리를 인식하지 못하고 import_class 를 불러오지 못하는 새로운 오류가 나타났습니다.  
+이는 ST-GCN-SL의 원본인 ST-GCN 모델에서도 똑같이 나타는 현상으로, 아래 링크를 참고하여 해걀하였습니다.  
+
+![error-solve-link](https://github.com/limaosen0/AS-GCN/issues/4)  
+모델 실행 과정에서 같은 오류가 계속해서 나타나는 문제가 있었습니다. 실행에서 나타는 오류는 모두 해결했으나, 같은 오류가 또 나타난다면 위의 링크를 참고하여 주세요.  
+<br/><br/><br/>
+
+## 2. 데이터 다운로드  
+trining을 확인하기 위해서라면, 굳이 전처리 과정을 실행하지 않고 이미 전처리가 된 데이터를 받아 진행할 수 도 있습니다.  
+```
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1fB4BMmewTI5-eNDI83mcOmIETPjVg56N' -O adllvd-skeleton-20.zip  
+unzip adllvd-skeleton-20.zip
+```
+Neuron 3에는 /users/suhyeon/GitHub/ST-GCN-SL/st-gcn-sl/st-gcn/data/asllvd-skeleton-20/normalized 에 저장되어 있습니다.  
+그리고 config/sl에 있는 train-asllvd-skeleton-20.yaml, train-asllvd-skeleton.yaml 파일 안의 data path와 work directory를 Neuron3에 맞추어 모두 변경하였습니다.  
+  
+   
+## 3. 학습 진행 확인
+사전에 제공된 학습 파일을 다운받아 학습이 잘 진행되는지 여부를 확인하였습니다.  
+pre-trained 모델을 다운받습니다.
+```
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1hCunDgMWgQmW49_dMZsbvvJlUj5-Qk_O' -O epoch1350_model.pt
+unzip epoch1350_model.pt
+```  
+Neuron3에 저장된 경로는 /users/suhyeon/GitHub/ST-GCN-SL/st-gcn-sl/st-gcn/work/st-gcn-sl/asllvd-skeleton-20/2020-05-12-22-45/ 입니다.  
+  
+다음으로 
+```
+cd /users/suhyeon/GitHub/ST-GCN-SL/st-gcn-sl/st-gcn  
+python main.py -c config/sl/config.yaml --weights ./work/st-gcn-sl/asllvd-skeleton-20/2020-05-12-22-45
+```
+./work/st-gcn-sl/asllvd-skeleton-20/2020-05-12-22-45
