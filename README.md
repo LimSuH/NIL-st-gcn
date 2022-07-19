@@ -22,8 +22,8 @@ cd /users/suhyeon/GitHub/NIL-st-gcn
 ```
     
 ## Abstract  
-태초에 리니어 모델이 있었다. 리니어는 모든 피처 맵을 1차원의 매트릭스로 이어, Convolution을 실행했다.
-그리고 CNN이 생겨났다. CNN은 그리드 형태의 데이터를 가지고 ConVolution 연산을 했다.
+Linear 모델은 모든 피처 맵을 1차원의 매트릭스로 이어, Convolution을 실행한다.
+이후 CNN이 등장했다. CNN은 그리드 형태의 데이터를 가지고 ConVolution 연산을 실행한다.
 이미지는 픽셀값이 그리드 형태로 정렬한 데이터로, CNN은 이미지 관련 학습, 또 데이터가 정적이므로 Locality 찾기, 인풋의 특성을 찾아내는것에 특화되어있다.  
 
 그러나 인간의 움직임은 동적이며, 연속적이다.  
