@@ -6,9 +6,9 @@ Sign Language Recognition을 위한 **ST-GCN**과 **ST-GCN-SL** 모델을 업로
 [ST-GCN](https://github.com/yysijie/st-gcn)  
 [ST-GCN-SL](https://github.com/amorim-cleison/st-gcn-sl)  
 
-###### 각 모델 분석 문서
-[ST-GCN]()  
-[ST-GCN-SL]()
+###### 각 모델별 문서
+[ST-GCN](https://github.com/LimSuH/NIL-st-gcn/blob/main/ST-GCN_README.md)  
+[ST-GCN-SL](https://github.com/LimSuH/NIL-st-gcn/blob/main/ST-GCN-SL_README.md)
    
   
     
