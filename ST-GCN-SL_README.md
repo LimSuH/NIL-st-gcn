@@ -266,7 +266,9 @@ ST-GCN-SL 모델 실행 과정을 설명하였습니다.
 ## 1. 오류 해결  
 st-gcn-sl 모델이 가진 오류를 해결하였습니다.  
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/141448b6-d733-41bc-89e6-4e94ac40b2de/Untitled.png)  
+  
+![image](https://user-images.githubusercontent.com/82634312/179758301-05c2046d-5daf-4479-9c05-cb395e39be32.png)  
+
 pyyaml의 load 함수가 더이상 지원되지 않아 생긴 오류로, pyyaml 6.0.0을 삭제하고 낮은 버전으로 다시 설치하여 해결하였습니다.  
   
   
