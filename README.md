@@ -10,7 +10,16 @@ Sign Language Recognition을 위한 **ST-GCN**과 **ST-GCN-SL** 모델을 업로
 [ST-GCN](https://github.com/LimSuH/NIL-st-gcn/blob/main/ST-GCN_README.md)  
 [ST-GCN-SL](https://github.com/LimSuH/NIL-st-gcn/blob/main/ST-GCN-SL_README.md)
    
+###### 한국 수어 데이터 세트
+```
+cd /dataset  
+```
+KETI, AIHub, ASLLVD 데이터 세트  
   
+###### 디렉토리 위치
+```
+cd /users/suhyeon/GitHub/NIL-st-gcn 
+```
     
 ## Abstract  
 태초에 리니어 모델이 있었다. 리니어는 모든 피처 맵을 1차원의 매트릭스로 이어, Convolution을 실행했다.
