@@ -30,6 +30,9 @@ python tools/ntu_gendata.py --data_path <path to nturgbd+d_skeletons>
   
   
 위의 과정을 거치지 않고 전처리가 이미 완료된 데이터도 제공됩니다. https://drive.google.com/file/d/103NOL9YYZSW1hLoWmYnv5Fs8mK-Ij7qb/view  
+  
+  
+
 [데이터이름]_gendata.py_ 는 다른 메타데이터를 사용하지 않고, 데이터의 파일 이름으로 라벨을 생성합니다.  
 이를 리스트에 한번에 저장한 뒤, pkl 파일로 만들어 학습에서 사용되는 라벨 파일을 만듭니다.
 sample_label과 sample_name이 생성되는데, sample_label 은 모든 라벨 모음, sample_name은 동영상의 라벨을 가리킵니다.  
