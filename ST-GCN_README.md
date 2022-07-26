@@ -68,13 +68,15 @@ https://www.youtube.com/watch?v="유튜브동영상id"
 인덱스 순서대로 라벨들이 line by line으로 정리되어 있습니다. 깃허브에서 라인 숫자와 함께 보시면 확인이 쉽습니다. (단, 데이터셋의 라벨 인덱스는 0부터 시작하므로 한줄씩 밀려있는것을 유념해 주세요!)  
 
 </br>
+
 ### 데이터 파일  
+
 kinetics_train 디렉토리로 들어가면, 다음과 같은 파일들이 있습니다.  
   
   
 ![image](https://user-images.githubusercontent.com/82634312/180872317-04ebc3df-8408-4afe-a686-e3ead865254f.png)  
   
-이 json 파일들은 각 동영상 별로 keypoint 좌표를 기록하기 위한, 빈 기록장입니다.  
+이 json 파일들은 각 동영상 별로 keypoint 좌표를 두었습니다.  
 각 파일의 이름은 역시 동영상 id로, 라벨과 같이  
 ```
 https://www.youtube.com/watch?v="유튜브동영상id"
