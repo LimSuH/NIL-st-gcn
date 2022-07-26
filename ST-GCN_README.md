@@ -70,6 +70,8 @@ https://www.youtube.com/watch?v="유튜브동영상id"
 </br>
 ### 데이터 파일  
 kinetics_train 디렉토리로 들어가면, 다음과 같은 파일들이 있습니다.  
+  
+  
 ![image](https://user-images.githubusercontent.com/82634312/180872317-04ebc3df-8408-4afe-a686-e3ead865254f.png)  
   
 이 json 파일들은 각 동영상 별로 keypoint 좌표를 기록하기 위한, 빈 기록장입니다.  
