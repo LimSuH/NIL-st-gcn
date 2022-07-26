@@ -15,7 +15,7 @@ ST-GCN은 Kinetics와 NTU-RGB+D 두가지 데이터를 사용합니다.
 따라서 ST-GCN에서는 kinetics에 골격 데이터를 추출한 Kinetics-skeleton을 제공합니다.  
 
 ### NTU-RGB+D  
-NTU의 경우 skeleton 데이터를 포함하고 있습니다. ~~ST-GCN이 제공하는 구글 드라이브에서 다운받을 수 있습니다.  ~~
+NTU의 경우 skeleton 데이터를 포함하고 있습니다. ~~ST-GCN이 제공하는 구글 드라이브에서 다운받을 수 있습니다.~~  
 [NTU-RGB+D 웹사이트에서 다운받으실 수 있습니다.](https://rose1.ntu.edu.sg/)  
 리포지토리에 기록된 링크로 가시면 이용하실 수 없습니다.  
 또한 해당 사이트에서 제공하는 데이터를 이용하기 위해선 가입과 데이터 이용 요청이 필요합니다.  
