@@ -95,7 +95,9 @@ ST-GCN 레포지토리에 올려진 NTU raw 데이터 다운로드 링크는 현
 </br></br>
 ## 데이터 전처리  
 
-[데이터이름]_gendata.py_ 는 kinetics와, NTU마다 다른 방법으로 파일을 pkl, npy 파일로 구성합니다. 
+[데이터이름]_gendata.py_ 는 kinetics와, NTU마다 다른 방법으로 파일을 pkl, npy 파일로 구성합니다.  
+그러나 각 데이터에 맞추어 세부 사항이 다를 뿐, 대략적인 진행 방법은 같다고 볼 수 있습니다.  
+
 ```
 #Kinetics-skeleton
 python tools/kinetics_gendata.py --data_path data/kinetics-skeleton  
