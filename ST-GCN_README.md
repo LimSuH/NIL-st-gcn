@@ -132,7 +132,19 @@ NTU도 kinetics와 방식이 다를 뿐 같은 결과물을 만들어 냅니다.
 진행에 약간의 시간이 소요됩니다....  
   
   
-모든 과정이 끝나면 kinetics의 경우 **/data/Kinetics/kinetics-skeleton**, NTU는 **/data/NTU-RGB-D** 에 저장됩니다.
+모든 과정이 끝나면 kinetics의 경우 **/data/Kinetics/kinetics-skeleton**, NTU는 **/data/NTU-RGB-D** 에 저장됩니다.  
+</br></br></br>
+
+
+# pipeline  
+## preprocessing pipeline  
+![image](https://user-images.githubusercontent.com/82634312/182273786-be09d992-eaa9-4f12-b9d4-c580a45deae3.png)
+
+
+
+## Training pipeline  
+![image](https://user-images.githubusercontent.com/82634312/182276257-14297e1a-c529-458f-972d-7162fc099845.png)
+
 
 
 
