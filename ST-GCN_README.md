@@ -118,8 +118,40 @@ https://drive.google.com/file/d/103NOL9YYZSW1hLoWmYnv5Fs8mK-Ij7qb/view
 
 ### kinetics  
 kinetics_getdata.py는 data/kinetics-skeleton로부터 kinetics_{train/val}_label.json_ 과 kinetics_skeleton 디렉토리의 각 동영상별 좌표 파일을 불러와 전처리를 실행합니다.  
-과정은 아주 단순합니다.  kinetics_{train/val}_label.json_ 로부터는 라벨들을 sample_label 변수에 저장한뒤, 한번에 pkl 파일로 저장하고, kinetics_skeleton 디렉토리의 파일들로부터는 좌표를 불러와 sample_name 변수에 모두 저장하고 open_memmap 함수로 npy파일로 저장합니다.
+과정은 아주 단순합니다.  kinetics_{train/val}_label.json_ 로부터는 라벨들을 sample_label 변수에 저장한뒤, 한번에 pkl 파일로 저장하고, kinetics_skeleton 디렉토리의 파일들로부터는 좌표를 불러와 sample_name 변수에 모두 저장하고 open_memmap 함수로 npy파일로 저장합니다.  
 
+  
+데이터 전처리는 kinetics_gendata.py -> feeder_kinetics 의 getitem()에서 이루어집니다.  
+getitem은 좌표가 저장된 json 파일에서 데이터들을 읽어들입니다.  
+이후 다음과 같은 shape의 0으로 초기화 된 넘파이 배열을선언합니다.
+
+각 채널별로(3개 - x, y, score)  
+>각 프레임 별로(총300프레임)  
+> >각 joint 별로(18개)  
+> > >영상의 사람 수 만큼
+
+</br>
+이제 위의 넘파이 배열에 불러온 좌표값을 저장합니다.(이를 그래프 구성이라 볼수 있을것 같습니다.)  
+영상에 복수의 사람이 등장한다면 최대 4명까지에 대해서만 다음을 진행합니다.  
+
+
+```
+data_numpy[0, frame_index, :, m] = pose[0::2]
+data_numpy[1, frame_index, :, m] = pose[1::2]
+data_numpy[2, frame_index, :, m] = score
+```
+</br>
+n번째 프레임에 대해
+1. m번째 사람의 모든x좌표를 가져와 저장합니다
+2. m번째 사람의 모든y좌표를 가져와 저장합니다
+3. m번째 사람의 모든 score를 가져와 저장합니다
+모든 사람에 대해 마쳤다면 다음 프레임으로 넘어가 반복합니다  
+
+이후는 data augmentation을 진행합니다.  
+이후 각 좌표값의 score가 제일 높은 순으로 각 사람들의 좌표를 정렬합니다.  
+이후 모든 사람의 데이터를 넘기는것이 아니라, 가장 신뢰도 높은사람 2명의 데이터만 사용하게 됩니다.  
+이렇게 정제된 데이터는 다시 kinetics_gendata.py로 넘어와, npy와 pkl 파일이 되어 학습에 사용됩니다.  
+</br></br>
 
 
 ### NTU RGB+D  
