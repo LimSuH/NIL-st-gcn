@@ -30,6 +30,11 @@ NTU의 경우 skeleton 데이터를 포함하고 있습니다.
 
 두 데이터 모두 다운과 압축 해제 후, 전처리 과정을 거쳐야 합니다.  
 
+### KETI
+st-gcn-master/data에 KETI 데이터 디렉토리를 만들었습니다!  
+디렉토리 구조는 다음과 같습니다.  
+![image](https://user-images.githubusercontent.com/82634312/185132197-38e6d346-7e02-4ab8-9aed-6b01843907f9.png)  
+
 
   
 </br></br>
@@ -165,7 +170,29 @@ NTU도 kinetics와 방식이 다를 뿐 같은 결과물을 만들어 냅니다.
   
   
 모든 과정이 끝나면 kinetics의 경우 **/data/Kinetics/kinetics-skeleton**, NTU는 **/data/NTU-RGB-D** 에 저장됩니다.  
-</br></br></br>
+</br></br>
+
+### KETI
+한국어 수어 데이터셋 전처리를 구현하였습니다.  
+구조는 다음과 같습니다.  
+
+1.다음을 입력하여 전처리를 실행합니다.  
+```
+python tools/KETI_gendata --data data/KETI --openpose /home/lab/openpose/build
+``` 
+
+2. 엑셀 파일로부터 label.json 파일을 생성합니다.  
+3. label.json파일로부터 영상 목록을 불러옵니다.  
+4. openpose 적용을 위해 초기화합니다.  
+5. 영상 목록으로 수어 영상 데이터를 불러와 pose estimation을 진행합니다.  
+6. pose estimation의 결과로 좌표가 저장된 numpy 배열을 npy파일로 저장합니다.
+7. label.json 파일로부터 영상 이름 - class index를 짝을 맞추어 pickle 파일로 저장합니다.  
+
+현재는 6001~8280 까지의 subset으로만 전처리를 진행하였습니다.  
+전처리 만으로도 생각보다 많은 시간이 걸리고 있는점이 우려됩니다.
+
+
+</br>
 
 
 # pipeline  
