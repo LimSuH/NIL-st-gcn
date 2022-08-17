@@ -190,8 +190,9 @@ python tools/KETI_gendata --data data/KETI --openpose /home/lab/openpose/build
 7. label.json 파일로부터 영상 이름 - class index를 짝을 맞추어 pickle 파일로 저장합니다.  
 
 현재는 6001~8280 까지의 subset으로만 전처리를 진행하였습니다.  
-전처리 만으로도 생각보다 많은 시간이 걸리고 있는점이 우려됩니다.
-[*KETI 데이터 디렉토리 구조](https://github.com/LimSuH/NIL-st-gcn/blob/main/ST-GCN_README.md#keti)
+전처리 만으로도 생각보다 많은 시간이 걸리고 있는점이 우려됩니다.  
+
+[KETI 데이터 디렉토리 구조](https://github.com/LimSuH/NIL-st-gcn/blob/main/ST-GCN_README.md#keti)
 </br>
 
 
