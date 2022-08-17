@@ -33,6 +33,7 @@ NTU의 경우 skeleton 데이터를 포함하고 있습니다.
 ### KETI
 st-gcn-master/data에 KETI 데이터 디렉토리를 만들었습니다!  
 디렉토리 구조는 다음과 같습니다.  
+</br>
 ![image](https://user-images.githubusercontent.com/82634312/185132197-38e6d346-7e02-4ab8-9aed-6b01843907f9.png)  
 
 
@@ -190,8 +191,7 @@ python tools/KETI_gendata --data data/KETI --openpose /home/lab/openpose/build
 
 현재는 6001~8280 까지의 subset으로만 전처리를 진행하였습니다.  
 전처리 만으로도 생각보다 많은 시간이 걸리고 있는점이 우려됩니다.
-
-
+[*KETI 데이터 디렉토리 구조](https://github.com/LimSuH/NIL-st-gcn/blob/main/ST-GCN_README.md#keti)
 </br>
 
 
