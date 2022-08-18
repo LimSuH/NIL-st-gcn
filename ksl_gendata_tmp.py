@@ -5,46 +5,61 @@ import argparse
 import json
 import shutil
 import time
+from types import NoneType
 
 import numpy as np
 from numpy.lib.format import open_memmap
 import torch
-import skvideo.io
 
-from .io import IO
+from processor.io import IO
 import tools
 import tools.utils as utils
 
 import cv2
+import pyopenpose as op
+
 
 # class AIHub_gendata(IO):
-    # for AIHub subdataset
+# for AIHub subdataset
 
 
 class KETI_gendata(IO):
 
     def start(self):
-        exec("making_label.py")
-        num_person_out = 2,  # then choose 2 persons with the highest score
+        print("making label.json file...")
+        # os.system("python tools/utils/making_label.py")
+        num_person_out = 2  # then choose 2 persons with the highest score
         max_frame = 300
 
-        video_path = self.arg.data + '/video'
-        data_out_path = video_path + '/train/data.npy'
-        label_path = self.arg.data + '/label.json'
-        label_out_path = video_path + '/train/label.pkl'
+        data_path = self.arg.data + '/raw/Video'
+        data_out_path = self.arg.data + '/skeleton/data.npy'
+        label_path = self.arg.data + '/raw/label.json'
+        label_out_path = self.arg.data + '/skeleton/label.pkl'
+
+        # _____________________________________________________________________________________space for checking...____________________________________________________________________
+        f = open('video.txt', 'r')
+        data = f.read()
+        keys = data.split('\n')
+        # _____________________________________________________________________________________space for checking...____________________________________________________________________
 
         with open(label_path, 'r') as f:
             video_info = json.load(f)
-        keys = video_info.keys()
+        # keys = video_info.keys()
         file_list = []
         label = []
         for key in keys:
             label.append(video_info[key]['label_index'])
             file_list.append(key)
 
-        for i, video_name in enumerate(file_list):
-            input_video = video_path + "/" + video_name + ".avi"
+        # initiate
+        opWrapper = op.WrapperPython()
+        params = dict(model_folder='./models', model_pose='COCO')
+        opWrapper.configure(params)
+        opWrapper.start()
 
+        for i, video_name in enumerate(file_list):
+            input_video = data_path + "/" + video_name + ".avi"
+            # input_video = data_path + '/KETI_SL_0000006178.avi'
             fp = open_memmap(
                 data_out_path,
                 dtype='float32',
@@ -52,30 +67,21 @@ class KETI_gendata(IO):
                 shape=(len(file_list), 3, max_frame, 18, num_person_out))
 
             # pose estimation
-            data_numpy = self.pose_estimation(input_video)
+            data_numpy = self.pose_estimation(max_frame, input_video, opWrapper)
+            print('processing data:{} ({}/{})'.format(video_name, i + 1, len(file_list)))
 
-            self.print_toolbar(i * 1.0 / len(file_list), '({:>5}/{:<5}) Processing data: '.format(i + 1, len(file_list)))
-            fp[i, :, 0:data_numpy.shape[1], :, :] = data_numpy
+            if data_numpy is not None:
+                fp[i, :, 0:data_numpy.shape[1], :, :] = data_numpy
+            else:
+                print(i + 1)
+                continue
 
         with open(label_out_path, 'wb') as f:
             pickle.dump((file_list, list(label)), f)
 
-    def pose_estimation(self, input_video):
-        # load openpose python api
-        if self.arg.openpose is not None:
-            sys.path.append('{}/python'.format(self.arg.openpose))
-            sys.path.append('{}/build/python'.format(self.arg.openpose))
-        try:
-            import pyopenpose as op
-        except:
-            print('Can not find Openpose Python API.')
-            return
+        print("complete preprocessing.")
 
-        # initiate
-        opWrapper = op.WrapperPython()
-        params = dict(model_folder='./models', model_pose='COCO')
-        opWrapper.configure(params)
-        opWrapper.start()
+    def pose_estimation(self, max_frame, input_video, opWrapper):
         self.model.eval()
 
         video_capture = cv2.VideoCapture(input_video)
@@ -99,8 +105,10 @@ class KETI_gendata(IO):
             # pose estimation
             datum = op.Datum()
             datum.cvInputData = orig_image
-            opWrapper.emplaceAndPop([datum])
+            opWrapper.emplaceAndPop(op.VectorDatum([datum]))
             multi_pose = datum.poseKeypoints  # (num_person, num_joint, 3)
+            if multi_pose is None:
+                continue
             if len(multi_pose.shape) != 3:
                 continue
 
@@ -115,24 +123,13 @@ class KETI_gendata(IO):
             pose_tracker.update(multi_pose, frame_index)
             frame_index += 1
 
-            print('Pose estimation ({}/{}).'.format(frame_index, video_length))
+            # print('Pose estimation ({}/{}).'.format(frame_index, video_length))
 
         data_numpy = pose_tracker.get_skeleton_sequence()
 
+        if video_length > max_frame:
+            data_numpy = data_numpy[:, -301:-1, :, :]
         return data_numpy
-
-    # noinspection PyMethodMayBeStatic
-    def print_toolbar(self, rate, annotation=''):
-        toolbar_width = 30
-        # setup toolbar
-        sys.stdout.write("{}[".format(annotation))
-        for i in range(toolbar_width):
-            if i * 1.0 / toolbar_width > rate:
-                sys.stdout.write(' ')
-            else:
-                sys.stdout.write('-')
-            sys.stdout.flush()
-        sys.stdout.write(']\r')
 
     @staticmethod
     def get_parser(add_help=False):
@@ -233,7 +230,8 @@ class naive_pose_tracker():
         for trace_index, (trace, latest_frame) in enumerate(self.trace_info):
             if self.latest_frame - latest_frame < self.data_frame:
                 valid_trace_index.append(trace_index)
-        self.trace_info = [self.trace_info[v] for v in valid_trace_index]
+        valid_trace_index = valid_trace_index[0:2]
+        self.trace_info = [self.trace_info[v] for i, v in enumerate(valid_trace_index)]
 
         num_trace = len(self.trace_info)
         if num_trace == 0:
