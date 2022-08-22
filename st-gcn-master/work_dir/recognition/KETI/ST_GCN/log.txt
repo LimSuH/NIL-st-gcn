@@ -1,0 +1,316 @@
+[08.19.22|04:24:47 AM] Parameters:
+{'work_dir': './work_dir/recognition/KETI/ST_GCN', 'config': 'config/st_gcn/KETI/train.yaml', 'phase': 'train', 'save_result': False, 'start_epoch': 0, 'num_epoch': 50, 'use_gpu': True, 'device': [0, 1], 'log_interval': 100, 'save_interval': 10, 'eval_interval': 5, 'save_log': True, 'print_log': True, 'pavi_log': False, 'feeder': 'feeder.feeder.Feeder', 'num_worker': 4, 'train_feeder_args': {'random_choose': True, 'random_move': True, 'window_size': 150, 'data_path': './data/KETI/skeleton/data.npy', 'label_path': './data/KETI/skeleton/label.pkl', 'debug': False}, 'test_feeder_args': {'data_path': './data/KETI/skeleton/val_data.npy', 'label_path': './data/KETI/skeleton/val_label.pkl'}, 'batch_size': 50, 'test_batch_size': 50, 'debug': False, 'model': 'net.st_gcn.Model', 'model_args': {'in_channels': 3, 'num_class': 400, 'edge_importance_weighting': True, 'graph_args': {'layout': 'openpose', 'strategy': 'spatial'}}, 'weights': None, 'ignore_weights': [], 'show_topk': [1, 5], 'base_lr': 0.1, 'step': [20, 30, 40, 50], 'optimizer': 'SGD', 'nesterov': True, 'weight_decay': 0.0001}
+
+[08.19.22|04:24:47 AM] Training epoch: 0
+[08.19.22|05:24:22 PM] Parameters:
+{'work_dir': './work_dir/recognition/KETI/ST_GCN', 'config': 'config/st_gcn/KETI/train.yaml', 'phase': 'train', 'save_result': False, 'start_epoch': 0, 'num_epoch': 50, 'use_gpu': True, 'device': [0, 1], 'log_interval': 100, 'save_interval': 10, 'eval_interval': 5, 'save_log': True, 'print_log': True, 'pavi_log': False, 'feeder': 'feeder.feeder.Feeder', 'num_worker': 2, 'train_feeder_args': {'random_choose': True, 'random_move': True, 'window_size': 150, 'data_path': './data/KETI/skeleton/data.npy', 'label_path': './data/KETI/skeleton/label.pkl', 'debug': False}, 'test_feeder_args': {'data_path': './data/KETI/skeleton/val_data.npy', 'label_path': './data/KETI/skeleton/val_label.pkl'}, 'batch_size': 50, 'test_batch_size': 50, 'debug': False, 'model': 'net.st_gcn.Model', 'model_args': {'in_channels': 3, 'num_class': 400, 'edge_importance_weighting': True, 'graph_args': {'layout': 'openpose', 'strategy': 'spatial'}}, 'weights': None, 'ignore_weights': [], 'show_topk': [1, 5], 'base_lr': 0.1, 'step': [20, 30, 40, 50], 'optimizer': 'SGD', 'nesterov': True, 'weight_decay': 0.0001}
+
+[08.19.22|05:24:22 PM] Training epoch: 0
+[08.19.22|05:28:14 PM] Parameters:
+{'work_dir': './work_dir/recognition/KETI/ST_GCN', 'config': 'config/st_gcn/KETI/train.yaml', 'phase': 'train', 'save_result': False, 'start_epoch': 0, 'num_epoch': 50, 'use_gpu': True, 'device': [0, 1], 'log_interval': 100, 'save_interval': 10, 'eval_interval': 5, 'save_log': True, 'print_log': True, 'pavi_log': False, 'feeder': 'feeder.feeder.Feeder', 'num_worker': 2, 'train_feeder_args': {'random_choose': True, 'random_move': True, 'window_size': 150, 'data_path': './data/KETI/skeleton/data.npy', 'label_path': './data/KETI/skeleton/label.pkl', 'debug': False}, 'test_feeder_args': {'data_path': './data/KETI/skeleton/val_data.npy', 'label_path': './data/KETI/skeleton/val_label.pkl'}, 'batch_size': 50, 'test_batch_size': 50, 'debug': False, 'model': 'net.st_gcn.Model', 'model_args': {'in_channels': 3, 'num_class': 400, 'edge_importance_weighting': True, 'graph_args': {'layout': 'openpose', 'strategy': 'spatial'}}, 'weights': None, 'ignore_weights': [], 'show_topk': [1, 5], 'base_lr': 0.1, 'step': [20, 30, 40, 50], 'optimizer': 'SGD', 'nesterov': True, 'weight_decay': 0.0001}
+
+[08.19.22|05:28:14 PM] Training epoch: 0
+[08.19.22|05:33:54 PM] Parameters:
+{'work_dir': './work_dir/recognition/KETI/ST_GCN', 'config': 'config/st_gcn/KETI/train.yaml', 'phase': 'train', 'save_result': False, 'start_epoch': 0, 'num_epoch': 50, 'use_gpu': True, 'device': [0, 1], 'log_interval': 100, 'save_interval': 10, 'eval_interval': 5, 'save_log': True, 'print_log': True, 'pavi_log': False, 'feeder': 'feeder.feeder.Feeder', 'num_worker': 2, 'train_feeder_args': {'random_choose': True, 'random_move': True, 'window_size': 150, 'data_path': './data/KETI/skeleton/data.npy', 'label_path': './data/KETI/skeleton/label.pkl', 'debug': False}, 'test_feeder_args': {'data_path': './data/KETI/skeleton/val_data.npy', 'label_path': './data/KETI/skeleton/val_label.pkl'}, 'batch_size': 50, 'test_batch_size': 50, 'debug': False, 'model': 'net.st_gcn.Model', 'model_args': {'in_channels': 3, 'num_class': 400, 'edge_importance_weighting': True, 'graph_args': {'layout': 'openpose', 'strategy': 'spatial'}}, 'weights': None, 'ignore_weights': [], 'show_topk': [1, 5], 'base_lr': 0.1, 'step': [20, 30, 40, 50], 'optimizer': 'SGD', 'nesterov': True, 'weight_decay': 0.0001}
+
+[08.19.22|05:33:54 PM] Training epoch: 0
+[08.19.22|05:34:13 PM] Parameters:
+{'work_dir': './work_dir/recognition/KETI/ST_GCN', 'config': 'config/st_gcn/KETI/train.yaml', 'phase': 'train', 'save_result': False, 'start_epoch': 0, 'num_epoch': 50, 'use_gpu': True, 'device': [0, 1], 'log_interval': 100, 'save_interval': 10, 'eval_interval': 5, 'save_log': True, 'print_log': True, 'pavi_log': False, 'feeder': 'feeder.feeder.Feeder', 'num_worker': 2, 'train_feeder_args': {'random_choose': True, 'random_move': True, 'window_size': 150, 'data_path': './data/KETI/skeleton/data.npy', 'label_path': './data/KETI/skeleton/label.pkl', 'debug': False}, 'test_feeder_args': {'data_path': './data/KETI/skeleton/val_data.npy', 'label_path': './data/KETI/skeleton/val_label.pkl'}, 'batch_size': 50, 'test_batch_size': 50, 'debug': False, 'model': 'net.st_gcn.Model', 'model_args': {'in_channels': 3, 'num_class': 400, 'edge_importance_weighting': True, 'graph_args': {'layout': 'openpose', 'strategy': 'spatial'}}, 'weights': None, 'ignore_weights': [], 'show_topk': [1, 5], 'base_lr': 0.1, 'step': [20, 30, 40, 50], 'optimizer': 'SGD', 'nesterov': True, 'weight_decay': 0.0001}
+
+[08.19.22|05:34:13 PM] Training epoch: 0
+[08.19.22|05:35:15 PM] Parameters:
+{'work_dir': './work_dir/recognition/KETI/ST_GCN', 'config': 'config/st_gcn/KETI/train.yaml', 'phase': 'train', 'save_result': False, 'start_epoch': 0, 'num_epoch': 50, 'use_gpu': True, 'device': [0, 1], 'log_interval': 100, 'save_interval': 10, 'eval_interval': 5, 'save_log': True, 'print_log': True, 'pavi_log': False, 'feeder': 'feeder.feeder.Feeder', 'num_worker': 2, 'train_feeder_args': {'random_choose': True, 'random_move': True, 'window_size': 150, 'data_path': './data/KETI/skeleton/data.npy', 'label_path': './data/KETI/skeleton/label.pkl', 'debug': False}, 'test_feeder_args': {'data_path': './data/KETI/skeleton/val_data.npy', 'label_path': './data/KETI/skeleton/val_label.pkl'}, 'batch_size': 50, 'test_batch_size': 50, 'debug': False, 'model': 'net.st_gcn.Model', 'model_args': {'in_channels': 3, 'num_class': 400, 'edge_importance_weighting': True, 'graph_args': {'layout': 'openpose', 'strategy': 'spatial'}}, 'weights': None, 'ignore_weights': [], 'show_topk': [1, 5], 'base_lr': 0.1, 'step': [20, 30, 40, 50], 'optimizer': 'SGD', 'nesterov': True, 'weight_decay': 0.0001}
+
+[08.19.22|05:35:15 PM] Training epoch: 0
+[08.19.22|05:37:29 PM] Parameters:
+{'work_dir': './work_dir/recognition/KETI/ST_GCN', 'config': 'config/st_gcn/KETI/train.yaml', 'phase': 'train', 'save_result': False, 'start_epoch': 0, 'num_epoch': 50, 'use_gpu': True, 'device': [0, 1], 'log_interval': 100, 'save_interval': 10, 'eval_interval': 5, 'save_log': True, 'print_log': True, 'pavi_log': False, 'feeder': 'feeder.feeder.Feeder', 'num_worker': 2, 'train_feeder_args': {'random_choose': True, 'random_move': True, 'window_size': 150, 'data_path': './data/KETI/skeleton/data.npy', 'label_path': './data/KETI/skeleton/label.pkl', 'debug': False}, 'test_feeder_args': {'data_path': './data/KETI/skeleton/val_data.npy', 'label_path': './data/KETI/skeleton/val_label.pkl'}, 'batch_size': 50, 'test_batch_size': 50, 'debug': False, 'model': 'net.st_gcn.Model', 'model_args': {'in_channels': 3, 'num_class': 400, 'edge_importance_weighting': True, 'graph_args': {'layout': 'openpose', 'strategy': 'spatial'}}, 'weights': None, 'ignore_weights': [], 'show_topk': [1, 5], 'base_lr': 0.1, 'step': [20, 30, 40, 50], 'optimizer': 'SGD', 'nesterov': True, 'weight_decay': 0.0001}
+
+[08.19.22|05:37:29 PM] Training epoch: 0
+[08.19.22|05:49:30 PM] Parameters:
+{'work_dir': './work_dir/recognition/KETI/ST_GCN', 'config': 'config/st_gcn/KETI/train.yaml', 'phase': 'train', 'save_result': False, 'start_epoch': 0, 'num_epoch': 50, 'use_gpu': True, 'device': [0, 1], 'log_interval': 100, 'save_interval': 10, 'eval_interval': 5, 'save_log': True, 'print_log': True, 'pavi_log': False, 'feeder': 'feeder.feeder.Feeder', 'num_worker': 2, 'train_feeder_args': {'random_choose': True, 'random_move': True, 'window_size': 150, 'data_path': './data/KETI/skeleton/data.npy', 'label_path': './data/KETI/skeleton/label.pkl', 'debug': False}, 'test_feeder_args': {'data_path': './data/KETI/skeleton/val_data.npy', 'label_path': './data/KETI/skeleton/val_label.pkl'}, 'batch_size': 50, 'test_batch_size': 50, 'debug': False, 'model': 'net.st_gcn.Model', 'model_args': {'in_channels': 3, 'num_class': 85, 'edge_importance_weighting': True, 'graph_args': {'layout': 'openpose', 'strategy': 'spatial'}}, 'weights': None, 'ignore_weights': [], 'show_topk': [1, 5], 'base_lr': 0.1, 'step': [20, 30, 40, 50], 'optimizer': 'SGD', 'nesterov': True, 'weight_decay': 0.0001}
+
+[08.19.22|05:49:30 PM] Training epoch: 0
+[08.19.22|10:16:55 PM] Parameters:
+{'work_dir': './work_dir/recognition/KETI/ST_GCN', 'config': 'config/st_gcn/KETI/train.yaml', 'phase': 'train', 'save_result': False, 'start_epoch': 0, 'num_epoch': 50, 'use_gpu': True, 'device': [0, 1], 'log_interval': 100, 'save_interval': 10, 'eval_interval': 5, 'save_log': True, 'print_log': True, 'pavi_log': False, 'feeder': 'feeder.feeder.Feeder', 'num_worker': 2, 'train_feeder_args': {'random_choose': True, 'random_move': True, 'window_size': 150, 'data_path': './data/KETI/skeleton/data.npy', 'label_path': './data/KETI/skeleton/label.pkl', 'debug': False}, 'test_feeder_args': {'data_path': './data/KETI/skeleton/val_data.npy', 'label_path': './data/KETI/skeleton/val_label.pkl'}, 'batch_size': 50, 'test_batch_size': 50, 'debug': False, 'model': 'net.st_gcn.Model', 'model_args': {'in_channels': 3, 'num_class': 85, 'edge_importance_weighting': True, 'graph_args': {'layout': 'openpose', 'strategy': 'spatial'}}, 'weights': None, 'ignore_weights': [], 'show_topk': [1, 5], 'base_lr': 0.1, 'step': [20, 30, 40, 50], 'optimizer': 'SGD', 'nesterov': True, 'weight_decay': 0.0001}
+
+[08.19.22|10:16:55 PM] Training epoch: 0
+[08.19.22|10:21:37 PM] Parameters:
+{'work_dir': './work_dir/recognition/KETI/ST_GCN', 'config': 'config/st_gcn/KETI/train.yaml', 'phase': 'train', 'save_result': False, 'start_epoch': 0, 'num_epoch': 50, 'use_gpu': True, 'device': [0, 1], 'log_interval': 10, 'save_interval': 10, 'eval_interval': 5, 'save_log': True, 'print_log': True, 'pavi_log': False, 'feeder': 'feeder.feeder.Feeder', 'num_worker': 2, 'train_feeder_args': {'random_choose': True, 'random_move': True, 'window_size': 150, 'data_path': './data/KETI/skeleton/data.npy', 'label_path': './data/KETI/skeleton/label.pkl', 'debug': False}, 'test_feeder_args': {'data_path': './data/KETI/skeleton/val_data.npy', 'label_path': './data/KETI/skeleton/val_label.pkl'}, 'batch_size': 50, 'test_batch_size': 50, 'debug': False, 'model': 'net.st_gcn.Model', 'model_args': {'in_channels': 3, 'num_class': 85, 'edge_importance_weighting': True, 'graph_args': {'layout': 'openpose', 'strategy': 'spatial'}}, 'weights': None, 'ignore_weights': [], 'show_topk': [1, 5], 'base_lr': 0.1, 'step': [20, 30, 40, 50], 'optimizer': 'SGD', 'nesterov': True, 'weight_decay': 0.0001}
+
+[08.19.22|10:21:37 PM] Training epoch: 0
+[08.19.22|10:21:53 PM] Parameters:
+{'work_dir': './work_dir/recognition/KETI/ST_GCN', 'config': 'config/st_gcn/KETI/train.yaml', 'phase': 'train', 'save_result': False, 'start_epoch': 0, 'num_epoch': 50, 'use_gpu': True, 'device': [0, 1], 'log_interval': 10, 'save_interval': 10, 'eval_interval': 5, 'save_log': True, 'print_log': True, 'pavi_log': False, 'feeder': 'feeder.feeder.Feeder', 'num_worker': 2, 'train_feeder_args': {'random_choose': True, 'random_move': True, 'window_size': 150, 'data_path': './data/KETI/skeleton/data.npy', 'label_path': './data/KETI/skeleton/label.pkl', 'debug': False}, 'test_feeder_args': {'data_path': './data/KETI/skeleton/val_data.npy', 'label_path': './data/KETI/skeleton/val_label.pkl'}, 'batch_size': 50, 'test_batch_size': 50, 'debug': False, 'model': 'net.st_gcn.Model', 'model_args': {'in_channels': 3, 'num_class': 85, 'edge_importance_weighting': True, 'graph_args': {'layout': 'openpose', 'strategy': 'spatial'}}, 'weights': None, 'ignore_weights': [], 'show_topk': [1, 5], 'base_lr': 0.1, 'step': [20, 30, 40, 50], 'optimizer': 'SGD', 'nesterov': True, 'weight_decay': 0.0001}
+
+[08.19.22|10:21:53 PM] Training epoch: 0
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  [08.20.22|12:53:44 AM] Parameters:
+{'work_dir': './work_dir/recognition/KETI/ST_GCN', 'config': 'config/st_gcn/KETI/train.yaml', 'phase': 'train', 'save_result': False, 'start_epoch': 0, 'num_epoch': 50, 'use_gpu': True, 'device': [0, 1], 'log_interval': 10, 'save_interval': 10, 'eval_interval': 5, 'save_log': True, 'print_log': True, 'pavi_log': False, 'feeder': 'feeder.feeder.Feeder', 'num_worker': 2, 'train_feeder_args': {'random_choose': True, 'random_move': True, 'window_size': 150, 'data_path': './data/KETI/skeleton/data.npy', 'label_path': './data/KETI/skeleton/label.pkl', 'debug': False}, 'test_feeder_args': {'data_path': './data/KETI/skeleton/val_data.npy', 'label_path': './data/KETI/skeleton/val_label.pkl'}, 'batch_size': 50, 'test_batch_size': 50, 'debug': False, 'model': 'net.st_gcn.Model', 'model_args': {'in_channels': 3, 'num_class': 20, 'edge_importance_weighting': True, 'graph_args': {'layout': 'openpose', 'strategy': 'spatial'}}, 'weights': None, 'ignore_weights': [], 'show_topk': [1, 5], 'base_lr': 0.1, 'step': [20, 30, 40, 50], 'optimizer': 'SGD', 'nesterov': True, 'weight_decay': 0.0001}
+
+[08.20.22|12:53:44 AM] Training epoch: 0
+[08.20.22|12:53:49 AM] 	Iter 0 Done. | loss: 3.0466 | lr: 0.100000
+[08.20.22|12:57:18 AM] Parameters:
+{'work_dir': './work_dir/recognition/KETI/ST_GCN', 'config': 'config/st_gcn/KETI/train.yaml', 'phase': 'train', 'save_result': False, 'start_epoch': 0, 'num_epoch': 50, 'use_gpu': True, 'device': [0, 1], 'log_interval': 10, 'save_interval': 10, 'eval_interval': 5, 'save_log': True, 'print_log': True, 'pavi_log': False, 'feeder': 'feeder.feeder.Feeder', 'num_worker': 2, 'train_feeder_args': {'random_choose': True, 'random_move': True, 'window_size': 150, 'data_path': './data/KETI/skeleton/data.npy', 'label_path': './data/KETI/skeleton/label.pkl', 'debug': False}, 'test_feeder_args': {'data_path': './data/KETI/skeleton/val_data.npy', 'label_path': './data/KETI/skeleton/val_label.pkl'}, 'batch_size': 50, 'test_batch_size': 50, 'debug': False, 'model': 'net.st_gcn.Model', 'model_args': {'in_channels': 3, 'num_class': 20, 'edge_importance_weighting': True, 'graph_args': {'layout': 'openpose', 'strategy': 'spatial'}}, 'weights': None, 'ignore_weights': [], 'show_topk': [1, 5], 'base_lr': 0.1, 'step': [20, 30, 40, 50], 'optimizer': 'SGD', 'nesterov': True, 'weight_decay': 0.0001}
+
+[08.20.22|12:57:18 AM] Training epoch: 0
+[08.20.22|12:57:22 AM] 	Iter 0 Done. | loss: 3.0399 | lr: 0.100000
+[08.20.22|12:57:22 AM] 	mean_loss: 3.0399057865142822
+[08.20.22|12:57:22 AM] Time consumption:
+[08.20.22|12:57:22 AM] Done.
+[08.20.22|12:57:22 AM] Training epoch: 1
+[08.20.22|12:57:23 AM] 	mean_loss: 3.584315299987793
+[08.20.22|12:57:23 AM] Time consumption:
+[08.20.22|12:57:23 AM] Done.
+[08.20.22|12:57:23 AM] Training epoch: 2
+[08.20.22|12:57:23 AM] 	mean_loss: 4.2975873947143555
+[08.20.22|12:57:23 AM] Time consumption:
+[08.20.22|12:57:23 AM] Done.
+[08.20.22|12:57:23 AM] Training epoch: 3
+[08.20.22|12:57:24 AM] 	mean_loss: 3.791064977645874
+[08.20.22|12:57:24 AM] Time consumption:
+[08.20.22|12:57:24 AM] Done.
+[08.20.22|12:57:24 AM] Training epoch: 4
+[08.20.22|12:57:24 AM] 	mean_loss: 4.122150421142578
+[08.20.22|12:57:24 AM] Time consumption:
+[08.20.22|12:57:24 AM] Done.
+[08.20.22|12:57:24 AM] Eval epoch: 4
+[08.20.22|12:57:24 AM] 	mean_loss: 3.128913640975952
+[08.20.22|12:57:24 AM] 	Top1: 6.25%
+[08.20.22|12:57:24 AM] 	Top5: 31.25%
+[08.20.22|12:57:24 AM] Done.
+[08.20.22|12:57:24 AM] Training epoch: 5
+[08.20.22|12:57:25 AM] 	mean_loss: 3.9962048530578613
+[08.20.22|12:57:25 AM] Time consumption:
+[08.20.22|12:57:25 AM] Done.
+[08.20.22|12:57:25 AM] Training epoch: 6
+[08.20.22|12:57:25 AM] 	mean_loss: 3.4485931396484375
+[08.20.22|12:57:25 AM] Time consumption:
+[08.20.22|12:57:25 AM] Done.
+[08.20.22|12:57:25 AM] Training epoch: 7
+[08.20.22|12:57:25 AM] 	mean_loss: 2.9151511192321777
+[08.20.22|12:57:25 AM] Time consumption:
+[08.20.22|12:57:25 AM] Done.
+[08.20.22|12:57:25 AM] Training epoch: 8
+[08.20.22|12:57:26 AM] 	mean_loss: 2.9567699432373047
+[08.20.22|12:57:26 AM] Time consumption:
+[08.20.22|12:57:26 AM] Done.
+[08.20.22|12:57:26 AM] Training epoch: 9
+[08.20.22|12:57:26 AM] 	mean_loss: 3.2972023487091064
+[08.20.22|12:57:26 AM] Time consumption:
+[08.20.22|12:57:26 AM] Done.
+[08.20.22|12:57:26 AM] The model has been saved as ./work_dir/recognition/KETI/ST_GCN/epoch10_model.pt.
+[08.20.22|12:57:26 AM] Eval epoch: 9
+[08.20.22|12:57:27 AM] 	mean_loss: 3.024960517883301
+[08.20.22|12:57:27 AM] 	Top1: 6.25%
+[08.20.22|12:57:27 AM] 	Top5: 31.25%
+[08.20.22|12:57:27 AM] Done.
+[08.20.22|12:57:27 AM] Training epoch: 10
+[08.20.22|12:57:27 AM] 	Iter 10 Done. | loss: 3.2917 | lr: 0.100000
+[08.20.22|12:57:27 AM] 	mean_loss: 3.291710138320923
+[08.20.22|12:57:27 AM] Time consumption:
+[08.20.22|12:57:27 AM] Done.
+[08.20.22|12:57:27 AM] Training epoch: 11
+[08.20.22|12:57:27 AM] 	mean_loss: 3.153632164001465
+[08.20.22|12:57:27 AM] Time consumption:
+[08.20.22|12:57:27 AM] Done.
+[08.20.22|12:57:27 AM] Training epoch: 12
+[08.20.22|12:57:28 AM] 	mean_loss: 2.8991198539733887
+[08.20.22|12:57:28 AM] Time consumption:
+[08.20.22|12:57:28 AM] Done.
+[08.20.22|12:57:28 AM] Training epoch: 13
+[08.20.22|12:57:28 AM] 	mean_loss: 3.8220930099487305
+[08.20.22|12:57:28 AM] Time consumption:
+[08.20.22|12:57:28 AM] Done.
+[08.20.22|12:57:28 AM] Training epoch: 14
+[08.20.22|12:57:29 AM] 	mean_loss: 2.913431167602539
+[08.20.22|12:57:29 AM] Time consumption:
+[08.20.22|12:57:29 AM] Done.
+[08.20.22|12:57:29 AM] Eval epoch: 14
+[08.20.22|12:57:29 AM] 	mean_loss: 3.2640697956085205
+[08.20.22|12:57:29 AM] 	Top1: 6.25%
+[08.20.22|12:57:29 AM] 	Top5: 32.50%
+[08.20.22|12:57:29 AM] Done.
+[08.20.22|12:57:29 AM] Training epoch: 15
+[08.20.22|12:57:29 AM] 	mean_loss: 3.145864248275757
+[08.20.22|12:57:29 AM] Time consumption:
+[08.20.22|12:57:29 AM] Done.
+[08.20.22|12:57:29 AM] Training epoch: 16
+[08.20.22|12:57:30 AM] 	mean_loss: 2.976656198501587
+[08.20.22|12:57:30 AM] Time consumption:
+[08.20.22|12:57:30 AM] Done.
+[08.20.22|12:57:30 AM] Training epoch: 17
+[08.20.22|12:57:30 AM] 	mean_loss: 2.915382146835327
+[08.20.22|12:57:30 AM] Time consumption:
+[08.20.22|12:57:30 AM] Done.
+[08.20.22|12:57:30 AM] Training epoch: 18
+[08.20.22|12:57:31 AM] 	mean_loss: 2.8948657512664795
+[08.20.22|12:57:31 AM] Time consumption:
+[08.20.22|12:57:31 AM] Done.
+[08.20.22|12:57:31 AM] Training epoch: 19
+[08.20.22|12:57:31 AM] 	mean_loss: 2.9488916397094727
+[08.20.22|12:57:31 AM] Time consumption:
+[08.20.22|12:57:31 AM] Done.
+[08.20.22|12:57:31 AM] The model has been saved as ./work_dir/recognition/KETI/ST_GCN/epoch20_model.pt.
+[08.20.22|12:57:31 AM] Eval epoch: 19
+[08.20.22|12:57:31 AM] 	mean_loss: 2.9894447326660156
+[08.20.22|12:57:31 AM] 	Top1: 6.25%
+[08.20.22|12:57:31 AM] 	Top5: 31.25%
+[08.20.22|12:57:31 AM] Done.
+[08.20.22|12:57:31 AM] Training epoch: 20
+[08.20.22|12:57:32 AM] 	Iter 20 Done. | loss: 2.8616 | lr: 0.010000
+[08.20.22|12:57:32 AM] 	mean_loss: 2.8616018295288086
+[08.20.22|12:57:32 AM] Time consumption:
+[08.20.22|12:57:32 AM] Done.
+[08.20.22|12:57:32 AM] Training epoch: 21
+[08.20.22|12:57:32 AM] 	mean_loss: 2.8434276580810547
+[08.20.22|12:57:32 AM] Time consumption:
+[08.20.22|12:57:32 AM] Done.
+[08.20.22|12:57:32 AM] Training epoch: 22
+[08.20.22|12:57:33 AM] 	mean_loss: 3.0045931339263916
+[08.20.22|12:57:33 AM] Time consumption:
+[08.20.22|12:57:33 AM] Done.
+[08.20.22|12:57:33 AM] Training epoch: 23
+[08.20.22|12:57:33 AM] 	mean_loss: 2.875697374343872
+[08.20.22|12:57:33 AM] Time consumption:
+[08.20.22|12:57:33 AM] Done.
+[08.20.22|12:57:33 AM] Training epoch: 24
+[08.20.22|12:57:33 AM] 	mean_loss: 2.9100022315979004
+[08.20.22|12:57:33 AM] Time consumption:
+[08.20.22|12:57:33 AM] Done.
+[08.20.22|12:57:33 AM] Eval epoch: 24
+[08.20.22|12:57:34 AM] 	mean_loss: 2.835753917694092
+[08.20.22|12:57:34 AM] 	Top1: 6.25%
+[08.20.22|12:57:34 AM] 	Top5: 32.50%
+[08.20.22|12:57:34 AM] Done.
+[08.20.22|12:57:34 AM] Training epoch: 25
+[08.20.22|12:57:34 AM] 	mean_loss: 2.8299527168273926
+[08.20.22|12:57:34 AM] Time consumption:
+[08.20.22|12:57:34 AM] Done.
+[08.20.22|12:57:34 AM] Training epoch: 26
+[08.20.22|12:57:35 AM] 	mean_loss: 2.8675599098205566
+[08.20.22|12:57:35 AM] Time consumption:
+[08.20.22|12:57:35 AM] Done.
+[08.20.22|12:57:35 AM] Training epoch: 27
+[08.20.22|12:57:35 AM] 	mean_loss: 2.8107199668884277
+[08.20.22|12:57:35 AM] Time consumption:
+[08.20.22|12:57:35 AM] Done.
+[08.20.22|12:57:35 AM] Training epoch: 28
+[08.20.22|12:57:35 AM] 	mean_loss: 2.803185224533081
+[08.20.22|12:57:35 AM] Time consumption:
+[08.20.22|12:57:35 AM] Done.
+[08.20.22|12:57:35 AM] Training epoch: 29
+[08.20.22|12:57:36 AM] 	mean_loss: 2.842073678970337
+[08.20.22|12:57:36 AM] Time consumption:
+[08.20.22|12:57:36 AM] Done.
+[08.20.22|12:57:36 AM] The model has been saved as ./work_dir/recognition/KETI/ST_GCN/epoch30_model.pt.
+[08.20.22|12:57:36 AM] Eval epoch: 29
+[08.20.22|12:57:36 AM] 	mean_loss: 2.832520008087158
+[08.20.22|12:57:36 AM] 	Top1: 6.25%
+[08.20.22|12:57:36 AM] 	Top5: 31.25%
+[08.20.22|12:57:36 AM] Done.
+[08.20.22|12:57:36 AM] Training epoch: 30
+[08.20.22|12:57:37 AM] 	Iter 30 Done. | loss: 2.8161 | lr: 0.001000
+[08.20.22|12:57:37 AM] 	mean_loss: 2.8161258697509766
+[08.20.22|12:57:37 AM] Time consumption:
+[08.20.22|12:57:37 AM] Done.
+[08.20.22|12:57:37 AM] Training epoch: 31
+[08.20.22|12:57:37 AM] 	mean_loss: 2.904465675354004
+[08.20.22|12:57:37 AM] Time consumption:
+[08.20.22|12:57:37 AM] Done.
+[08.20.22|12:57:37 AM] Training epoch: 32
+[08.20.22|12:57:37 AM] 	mean_loss: 2.8537070751190186
+[08.20.22|12:57:37 AM] Time consumption:
+[08.20.22|12:57:37 AM] Done.
+[08.20.22|12:57:37 AM] Training epoch: 33
+[08.20.22|12:57:38 AM] 	mean_loss: 2.79886531829834
+[08.20.22|12:57:38 AM] Time consumption:
+[08.20.22|12:57:38 AM] Done.
+[08.20.22|12:57:38 AM] Training epoch: 34
+[08.20.22|12:57:38 AM] 	mean_loss: 2.9248321056365967
+[08.20.22|12:57:38 AM] Time consumption:
+[08.20.22|12:57:38 AM] Done.
+[08.20.22|12:57:38 AM] Eval epoch: 34
+[08.20.22|12:57:39 AM] 	mean_loss: 2.8252590894699097
+[08.20.22|12:57:39 AM] 	Top1: 6.25%
+[08.20.22|12:57:39 AM] 	Top5: 31.25%
+[08.20.22|12:57:39 AM] Done.
+[08.20.22|12:57:39 AM] Training epoch: 35
+[08.20.22|12:57:39 AM] 	mean_loss: 2.9822888374328613
+[08.20.22|12:57:39 AM] Time consumption:
+[08.20.22|12:57:39 AM] Done.
+[08.20.22|12:57:39 AM] Training epoch: 36
+[08.20.22|12:57:39 AM] 	mean_loss: 2.8418779373168945
+[08.20.22|12:57:39 AM] Time consumption:
+[08.20.22|12:57:39 AM] Done.
+[08.20.22|12:57:39 AM] Training epoch: 37
+[08.20.22|12:57:40 AM] 	mean_loss: 2.8445725440979004
+[08.20.22|12:57:40 AM] Time consumption:
+[08.20.22|12:57:40 AM] Done.
+[08.20.22|12:57:40 AM] Training epoch: 38
+[08.20.22|12:57:40 AM] 	mean_loss: 2.8321590423583984
+[08.20.22|12:57:40 AM] Time consumption:
+[08.20.22|12:57:40 AM] Done.
+[08.20.22|12:57:40 AM] Training epoch: 39
+[08.20.22|12:57:41 AM] 	mean_loss: 2.844294548034668
+[08.20.22|12:57:41 AM] Time consumption:
+[08.20.22|12:57:41 AM] Done.
+[08.20.22|12:57:41 AM] The model has been saved as ./work_dir/recognition/KETI/ST_GCN/epoch40_model.pt.
+[08.20.22|12:57:41 AM] Eval epoch: 39
+[08.20.22|12:57:41 AM] 	mean_loss: 2.8220388889312744
+[08.20.22|12:57:41 AM] 	Top1: 6.25%
+[08.20.22|12:57:41 AM] 	Top5: 31.25%
+[08.20.22|12:57:41 AM] Done.
+[08.20.22|12:57:41 AM] Training epoch: 40
+[08.20.22|12:57:41 AM] 	Iter 40 Done. | loss: 2.9790 | lr: 0.000100
+[08.20.22|12:57:41 AM] 	mean_loss: 2.978985071182251
+[08.20.22|12:57:41 AM] Time consumption:
+[08.20.22|12:57:41 AM] Done.
+[08.20.22|12:57:41 AM] Training epoch: 41
+[08.20.22|12:57:42 AM] 	mean_loss: 2.9882736206054688
+[08.20.22|12:57:42 AM] Time consumption:
+[08.20.22|12:57:42 AM] Done.
+[08.20.22|12:57:42 AM] Training epoch: 42
+[08.20.22|12:57:42 AM] 	mean_loss: 2.944242000579834
+[08.20.22|12:57:42 AM] Time consumption:
+[08.20.22|12:57:42 AM] Done.
+[08.20.22|12:57:42 AM] Training epoch: 43
+[08.20.22|12:57:43 AM] 	mean_loss: 2.7856509685516357
+[08.20.22|12:57:43 AM] Time consumption:
+[08.20.22|12:57:43 AM] Done.
+[08.20.22|12:57:43 AM] Training epoch: 44
+[08.20.22|12:57:43 AM] 	mean_loss: 2.900024175643921
+[08.20.22|12:57:43 AM] Time consumption:
+[08.20.22|12:57:43 AM] Done.
+[08.20.22|12:57:43 AM] Eval epoch: 44
+[08.20.22|12:57:43 AM] 	mean_loss: 2.82466983795166
+[08.20.22|12:57:43 AM] 	Top1: 6.25%
+[08.20.22|12:57:43 AM] 	Top5: 31.25%
+[08.20.22|12:57:43 AM] Done.
+[08.20.22|12:57:43 AM] Training epoch: 45
+[08.20.22|12:57:44 AM] 	mean_loss: 2.861203908920288
+[08.20.22|12:57:44 AM] Time consumption:
+[08.20.22|12:57:44 AM] Done.
+[08.20.22|12:57:44 AM] Training epoch: 46
+[08.20.22|12:57:44 AM] 	mean_loss: 2.869302272796631
+[08.20.22|12:57:44 AM] Time consumption:
+[08.20.22|12:57:44 AM] Done.
+[08.20.22|12:57:44 AM] Training epoch: 47
+[08.20.22|12:57:44 AM] 	mean_loss: 2.8528964519500732
+[08.20.22|12:57:44 AM] Time consumption:
+[08.20.22|12:57:44 AM] Done.
+[08.20.22|12:57:44 AM] Training epoch: 48
+[08.20.22|12:57:45 AM] 	mean_loss: 2.8208673000335693
+[08.20.22|12:57:45 AM] Time consumption:
+[08.20.22|12:57:45 AM] Done.
+[08.20.22|12:57:45 AM] Training epoch: 49
+[08.20.22|12:57:45 AM] 	mean_loss: 2.8806982040405273
+[08.20.22|12:57:45 AM] Time consumption:
+[08.20.22|12:57:45 AM] Done.
+[08.20.22|12:57:45 AM] The model has been saved as ./work_dir/recognition/KETI/ST_GCN/epoch50_model.pt.
+[08.20.22|12:57:45 AM] Eval epoch: 49
+[08.20.22|12:57:46 AM] 	mean_loss: 2.8243378400802612
+[08.20.22|12:57:46 AM] 	Top1: 6.25%
+[08.20.22|12:57:46 AM] 	Top5: 32.50%
+[08.20.22|12:57:46 AM] Done.
+[08.20.22|08:36:34 AM] Parameters:
+{'work_dir': './work_dir/recognition/KETI/ST_GCN', 'config': 'config/st_gcn/KETI/train.yaml', 'phase': 'train', 'save_result': False, 'start_epoch': 0, 'num_epoch': 50, 'use_gpu': True, 'device': [0, 1], 'log_interval': 10, 'save_interval': 10, 'eval_interval': 5, 'save_log': True, 'print_log': True, 'pavi_log': False, 'feeder': 'feeder.feeder.Feeder', 'num_worker': 2, 'train_feeder_args': {'random_choose': True, 'random_move': True, 'window_size': 150, 'data_path': './data/KETI/skeleton/data.npy', 'label_path': './data/KETI/skeleton/label.pkl', 'debug': False}, 'test_feeder_args': {'data_path': './data/KETI/skeleton/val_data.npy', 'label_path': './data/KETI/skeleton/val_label.pkl'}, 'batch_size': 50, 'test_batch_size': 50, 'debug': False, 'model': 'net.st_gcn.Model', 'model_args': {'in_channels': 3, 'num_class': 20, 'edge_importance_weighting': True, 'graph_args': {'layout': 'openpose', 'strategy': 'spatial'}}, 'weights': None, 'ignore_weights': [], 'show_topk': [1, 5], 'base_lr': 0.1, 'step': [20, 30, 40, 50], 'optimizer': 'SGD', 'nesterov': True, 'weight_decay': 0.0001}
+
+[08.20.22|08:36:34 AM] Training epoch:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
