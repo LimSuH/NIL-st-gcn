@@ -259,7 +259,15 @@ st-gcn의 저자들은 4개의 gpu를 사용했으나, Neuron3는 2개의 gpu를
 이외의 parameter는 원하는 대로 조정이 가능합니다.  
 
 </br></br>
-2. 다음을 입력해 학습을 진행합니다.
+2. 다음과 같이 학습을 진행합니다.
+</br>
+
+가상환경을 활성화 합니다. 반드시 잊지 말고 가상환경을 활성화 해주세요! openpose가 작동하지 않을 수 있습니다.  
+```
+conda activate pytorch
+```
+</br>
+
 ```
 python main.py recognition -c config/st_gcn/KETI/train.yaml
 ```
