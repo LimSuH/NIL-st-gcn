@@ -177,9 +177,19 @@ NTU도 kinetics와 방식이 다를 뿐 같은 결과물을 만들어 냅니다.
 ### KETI
 한국어 수어 데이터셋 전처리를 구현하였습니다.  
 구조는 다음과 같습니다.  
-</br>
+</br></br>
+
 
 1.다음을 입력하여 전처리를 실행합니다.  
+</br>
+
+lab 계정으로 접속합니다.  
+가상환경을 활성화 합니다. 반드시 잊지 말고 가상환경을 활성화 해주세요! openpose가 작동하지 않을 수 있습니다.  
+```
+conda activate pytorch
+```
+
+전처리를 실행합니다.  
 ```
 python tools/ksl_gendata.py --data data/KETI --openpose /home/lab/openpose/build
 ```  
@@ -260,12 +270,8 @@ st-gcn의 저자들은 4개의 gpu를 사용했으나, Neuron3는 2개의 gpu를
 
 </br></br>
 2. 다음과 같이 학습을 진행합니다.
-</br>
-
-가상환경을 활성화 합니다. 반드시 잊지 말고 가상환경을 활성화 해주세요! openpose가 작동하지 않을 수 있습니다.  
-```
-conda activate pytorch
-```
+lab 계정으로 접속합니다.  
+다음을 실행합니다.  
 </br>
 
 ```
