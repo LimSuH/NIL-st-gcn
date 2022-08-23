@@ -229,6 +229,42 @@ making_annotation, lable.py 파일은 tools/utils에 있습니다.
 
 </br></br></br>
 
+# Training  
+위의 한국어 수어 데이터 전처리를 거쳐, 학습까지 진행하였습니다.  
+학습 실행을 위해서는 다음과 같은 과정을 거쳤습니다.  
+</br>
+1. KETI 데이터 학습을 위한 yaml 파일을 생성합니다.  
+위치는 config/st_gcn/KETI/train.yaml 입니다.  
+구성은 kinetics의 config 파일과 같으나, 경로나 값을 KETI 데이터, 그리고 학습 환경에 맞추어 변경하였습니다.  
+특히 parameter은 그때의 학습 환경에 맞추어 재설정 해야 합니다.  
+</br>
+### 다음과 같은 항목을 환경에 맞추어 필수적으로 재설정 해야 합니다:  
+경로 전반, num_class, device, batch_size, test_batch_size
+</br>
+#### num_class  
+학습 데이터의 class 종류 갯수입니다.  
+현재 저장된 data.npy는 총 20개의 class로 이루어져 있습니다.  
+</br>
+#### device  
+gpu 갯수입니다.  
+st-gcn의 저자들은 4개의 gpu를 사용했으나, Neuron3는 2개의 gpu를 사용합니다.
+</br>
+#### batch_size, test_batch_size  
+사용하는 데이터의 갯수에 따라 맞아떨어지도록 batch 사이즈를 조정합니다.
+</br>
+이외의 parameter는 원하는 대로 조정이 가능합니다.  
+
+</br></br>
+2. 다음을 입력해 학습을 진행합니다.
+```
+python main.py recognition -c config/st_gcn/KETI/train.yaml
+```
+![image](https://user-images.githubusercontent.com/82634312/186068924-a4f58638-a180-4c7b-90c6-e44b8219d44f.png)  
+입력시 다음과 같이 학습이 진행됩니다.  
+학습이 진행되면서 출력된 학습 현황과 model이 저장됩니다.  
+st-gcn-master/work_dir/recognition/KETI/ST_GCN 에서 모델, 학습 진행 로그(log.txt), parameter 설정(config.yaml)을 확인하실 수 있습니다.  
+</br></br></br></br>
+
 
 
 # pipeline  
