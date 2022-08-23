@@ -238,17 +238,21 @@ making_annotation, lable.py 파일은 tools/utils에 있습니다.
 구성은 kinetics의 config 파일과 같으나, 경로나 값을 KETI 데이터, 그리고 학습 환경에 맞추어 변경하였습니다.  
 특히 parameter은 그때의 학습 환경에 맞추어 재설정 해야 합니다.  
 </br>
+
 ### 다음과 같은 항목을 환경에 맞추어 필수적으로 재설정 해야 합니다:  
 경로 전반, num_class, device, batch_size, test_batch_size
 </br>
+
 #### num_class  
 학습 데이터의 class 종류 갯수입니다.  
 현재 저장된 data.npy는 총 20개의 class로 이루어져 있습니다.  
 </br>
+
 #### device  
 gpu 갯수입니다.  
 st-gcn의 저자들은 4개의 gpu를 사용했으나, Neuron3는 2개의 gpu를 사용합니다.
 </br>
+
 #### batch_size, test_batch_size  
 사용하는 데이터의 갯수에 따라 맞아떨어지도록 batch 사이즈를 조정합니다.
 </br>
