@@ -210,9 +210,23 @@ python tools/ksl_gendata.py --data data/KETI --openpose /home/lab/openpose/build
 
 
 현재는 6001~8280 까지의 subset으로만 전처리를 진행하였습니다.  
-영상마다 길이가 워낙 달라서, 데이터에 따라 전처리 시간이 크게 달라지고 있습니다.
+영상마다 길이가 워낙 달라서, 데이터에 따라 전처리 시간이 크게 달라지고 있습니다.  
+making_annotation, lable.py 파일은 tools/utils에 있습니다.  
+</br>
 
-[KETI 데이터 디렉토리 구조](https://github.com/LimSuH/NIL-st-gcn/blob/main/ST-GCN_README.md#keti)
+학습을 위해서는 데이터셋의 label index가 0,1,2.... 이렇게 순서대로 구성되어야 합니다.  
+현재는 label index를 순서대로 가져오도록 했으므로 위의 과정이 생략되었지만, ksl_gendata.py에 포함되어 있습니다.  
+사용 시 주석 해제하여 실행하시면 됩니다.  
+```
+ mapping = 0
+ for i in range(data_num):
+     file_list.append(ground_truth[i][0])
+     label.append(mapping)
+
+     if ground_truth[i][0] < ground_truth[i + 1][0]:
+         mapping += 1
+```
+
 </br></br></br>
 
 
