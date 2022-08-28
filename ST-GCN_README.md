@@ -2,8 +2,9 @@
 Spatial-Temporal graph convolution을 human action recognition에 사용한 모델  
 [논문 링크](https://github.com/yysijie/st-gcn)  
 
-[Dataset](https://github.com/LimSuH/NIL-st-gcn/edit/main/ST-GCN-SL_README.md#dataset)  
-[Training](https://github.com/LimSuH/NIL-st-gcn/edit/main/ST-GCN-SL_README.md#training)
+[Dataset](https://github.com/LimSuH/NIL-st-gcn/blob/main/ST-GCN_README.md#dataset)  
+[Training](https://github.com/LimSuH/NIL-st-gcn/blob/main/ST-GCN_README.md#training)  
+[Pipeline](https://github.com/LimSuH/NIL-st-gcn/blob/main/ST-GCN_README.md#pipeline)
 <br/><br/><br/>
 
 
@@ -176,24 +177,112 @@ NTU도 kinetics와 방식이 다를 뿐 같은 결과물을 만들어 냅니다.
 ### KETI
 한국어 수어 데이터셋 전처리를 구현하였습니다.  
 구조는 다음과 같습니다.  
+</br></br>
+
 
 1.다음을 입력하여 전처리를 실행합니다.  
+</br>
+
+lab 계정으로 접속합니다.  
+가상환경을 활성화 합니다. 반드시 잊지 말고 가상환경을 활성화 해주세요! openpose가 작동하지 않을 수 있습니다.  
 ```
-python tools/KETI_gendata --data data/KETI --openpose /home/lab/openpose/build
-``` 
+conda activate pytorch
+```
+
+전처리를 실행합니다.  
+```
+python tools/ksl_gendata.py --data data/KETI --openpose /home/lab/openpose/build
+```  
 
 2. 엑셀 파일로부터 label.json 파일을 생성합니다.  
-3. label.json파일로부터 영상 목록을 불러옵니다.  
-4. openpose 적용을 위해 초기화합니다.  
-5. 영상 목록으로 수어 영상 데이터를 불러와 pose estimation을 진행합니다.  
-6. pose estimation의 결과로 좌표가 저장된 numpy 배열을 npy파일로 저장합니다.
-7. label.json 파일로부터 영상 이름 - class index를 짝을 맞추어 pickle 파일로 저장합니다.  
+  - making_annotation.py 실행
+  - makine_lable.py 실행  
+</br>
+
+3. label.json파일로부터 영상 목록과 label index를 불러와 dictionary로 저장합니다.  
+
+4. label index를 오름차순으로 정렬합니다.  
+
+5. 원하는 데이터 숫자만큼 영상 목록과 label index 리스트를 만듭니다.  
+
+6. openpose initialize  
+
+7. 영상 목록으로 수어 영상 데이터를 불러와 pose estimation을 진행합니다.  
+
+8. pose estimation의 결과로 좌표가 저장된 numpy 배열을 npy파일로 저장합니다.  
+
+9. 영상 이름 - class index를 짝을 맞추어 pickle 파일로 저장합니다.  
+
+10. 이때, npy와 pkl 파일을 저장하면서 4:1로 training과 validation set을 분배해 저장합니다.  
+
+11. 최종결과물 - data.npy, lable.pkl / val_data.npy, val_label.pkl  
+</br>
+
 
 현재는 6001~8280 까지의 subset으로만 전처리를 진행하였습니다.  
-전처리 만으로도 생각보다 많은 시간이 걸리고 있는점이 우려됩니다.  
-
-[KETI 데이터 디렉토리 구조](https://github.com/LimSuH/NIL-st-gcn/blob/main/ST-GCN_README.md#keti)
+영상마다 길이가 워낙 달라서, 데이터에 따라 전처리 시간이 크게 달라지고 있습니다.  
+making_annotation, lable.py 파일은 tools/utils에 있습니다.  
 </br>
+
+학습을 위해서는 데이터셋의 label index가 0,1,2.... 이렇게 순서대로 구성되어야 합니다.  
+현재는 label index를 순서대로 가져오도록 했으므로 위의 과정이 생략되었지만, ksl_gendata.py에 포함되어 있습니다.  
+사용 시 주석 해제하여 실행하시면 됩니다.  
+```
+ mapping = 0
+ for i in range(data_num):
+     file_list.append(ground_truth[i][0])
+     label.append(mapping)
+
+     if ground_truth[i][0] < ground_truth[i + 1][0]:
+         mapping += 1
+```
+
+</br></br></br>
+
+# Training  
+위의 한국어 수어 데이터 전처리를 거쳐, 학습까지 진행하였습니다.  
+학습 실행을 위해서는 다음과 같은 과정을 거쳤습니다.  
+</br>
+1. KETI 데이터 학습을 위한 yaml 파일을 생성합니다.  
+위치는 config/st_gcn/KETI/train.yaml 입니다.  
+구성은 kinetics의 config 파일과 같으나, 경로나 값을 KETI 데이터, 그리고 학습 환경에 맞추어 변경하였습니다.  
+특히 parameter은 그때의 학습 환경에 맞추어 재설정 해야 합니다.  
+</br>
+
+### 다음과 같은 항목을 환경에 맞추어 필수적으로 재설정 해야 합니다:  
+경로 전반, num_class, device, batch_size, test_batch_size
+</br>
+
+#### num_class  
+학습 데이터의 class 종류 갯수입니다.  
+현재 저장된 data.npy는 총 20개의 class로 이루어져 있습니다.  
+</br>
+
+#### device  
+gpu 갯수입니다.  
+st-gcn의 저자들은 4개의 gpu를 사용했으나, Neuron3는 2개의 gpu를 사용합니다.
+</br>
+
+#### batch_size, test_batch_size  
+사용하는 데이터의 갯수에 따라 맞아떨어지도록 batch 사이즈를 조정합니다.
+</br>
+이외의 parameter는 원하는 대로 조정이 가능합니다.  
+
+</br></br>
+2. 다음과 같이 학습을 진행합니다.
+lab 계정으로 접속합니다.  
+다음을 실행합니다.  
+</br>
+
+```
+python main.py recognition -c config/st_gcn/KETI/train.yaml
+```
+![image](https://user-images.githubusercontent.com/82634312/186068924-a4f58638-a180-4c7b-90c6-e44b8219d44f.png)  
+입력시 다음과 같이 학습이 진행됩니다.  
+학습이 진행되면서 출력된 학습 현황과 model이 저장됩니다.  
+st-gcn-master/work_dir/recognition/KETI/ST_GCN 에서 모델, 학습 진행 로그(log.txt), parameter 설정(config.yaml)을 확인하실 수 있습니다.  
+</br></br></br></br>
+
 
 
 # pipeline  
