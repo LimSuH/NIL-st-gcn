@@ -183,6 +183,7 @@ NTU도 kinetics와 방식이 다를 뿐 같은 결과물을 만들어 냅니다.
 1.다음을 입력하여 전처리를 실행합니다.  
 </br>
 
+##### (1) label 파일과 skeleton json 파일 생성
 lab 계정으로 접속합니다.  
 가상환경을 활성화 합니다. 반드시 잊지 말고 가상환경을 활성화 해주세요! openpose가 작동하지 않을 수 있습니다.  
 ```
@@ -191,7 +192,7 @@ conda activate pytorch
 
 전처리를 실행합니다.  
 ```
-python tools/ksl_gendata.py --data data/KETI --openpose /home/lab/openpose/build
+python tools/ksl_pose_estimation.py --data data/KETI
 ```  
 
 2. 엑셀 파일로부터 label.json 파일을 생성합니다.  
@@ -199,23 +200,20 @@ python tools/ksl_gendata.py --data data/KETI --openpose /home/lab/openpose/build
   - makine_lable.py 실행  
 </br>
 
-3. label.json파일로부터 영상 목록과 label index를 불러와 dictionary로 저장합니다.  
+3. openpose initialize  
 
-4. label index를 오름차순으로 정렬합니다.  
+4. def making_data 호출  
 
-5. 원하는 데이터 숫자만큼 영상 목록과 label index 리스트를 만듭니다.  
+5. def get_label 호출  
 
-6. openpose initialize  
+6. label index를 오름차순으로 정렬합니다.  
 
-7. 영상 목록으로 수어 영상 데이터를 불러와 pose estimation을 진행합니다.  
+7. label_train(test).json파일로부터 영상 목록과 label index를 불러와 dictionary로 저장합니다.  
 
-8. pose estimation의 결과로 좌표가 저장된 numpy 배열을 npy파일로 저장합니다.  
+8. 영상 목록으로 수어 영상 데이터를 불러와 pose estimation을 진행합니다  
 
-9. 영상 이름 - class index를 짝을 맞추어 pickle 파일로 저장합니다.  
+9. def making_json 호출 - skeleton과 label, label index로 json 파일을 만듭니다. 
 
-10. 이때, npy와 pkl 파일을 저장하면서 4:1로 training과 validation set을 분배해 저장합니다.  
-
-11. 최종결과물 - data.npy, lable.pkl / val_data.npy, val_label.pkl  
 </br>
 
 
