@@ -180,7 +180,9 @@ NTU도 kinetics와 방식이 다를 뿐 같은 결과물을 만들어 냅니다.
 </br></br>
 
 
-1.다음을 입력하여 전처리를 실행합니다.  
+한국어 수어 데이터 전처리는 두 단계로 이루어 집니다.  
+(1) label 파일 생성 및 pose estimation - skeleton json파일 생성  
+(2) npy, pkl 파일 
 </br>
 
 ##### (1) label 파일과 skeleton json 파일 생성
@@ -217,9 +219,15 @@ python tools/ksl_pose_estimation.py --data data/KETI
 </br>
 
 
-현재는 6001~8280 까지의 subset으로만 전처리를 진행하였습니다.  
-영상마다 길이가 워낙 달라서, 데이터에 따라 전처리 시간이 크게 달라지고 있습니다.  
-making_annotation, lable.py 파일은 tools/utils에 있습니다.  
+현재는 label_train.json, label_test.json에 기재된 모든 영상에 대해 전처리가 완료된 상황입니다.  
+경로는 data/KETI/raw/train, data/KETI/raw/test 입니다.  
+train 6288개 영상, test 6288개 영상 총 12576개 영상 처리에 28시간 정도 결렸습니다.    
+making_annotation, making_label.py 파일은 tools/utils에 있습니다.  
+</br>
+##### (2) npy, pkl 파일 생성 
+각 영상별로 만들어진 json 파일을 불러, 사용자가 원하는 갯수만큼 데이터 셋을 생성합니다. test(validation) set는 train set의 1/5 비율로 만들어 집니다.  
+
+
 </br>
 
 학습을 위해서는 데이터셋의 label index가 0,1,2.... 이렇게 순서대로 구성되어야 합니다.  
