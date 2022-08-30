@@ -35,7 +35,7 @@ NTU의 경우 skeleton 데이터를 포함하고 있습니다.
 st-gcn-master/data에 KETI 데이터 디렉토리를 만들었습니다!  
 디렉토리 구조는 다음과 같습니다.  
 </br>
-![image](https://user-images.githubusercontent.com/82634312/185132197-38e6d346-7e02-4ab8-9aed-6b01843907f9.png)  
+![그림1](https://user-images.githubusercontent.com/82634312/187357324-25e9e8b0-a62b-470f-ad31-6e7b6331f4ed.png)
 
 
   
