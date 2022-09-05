@@ -29,8 +29,8 @@ class KETI_gendata(IO):
 
     def start(self):
         print("making label with json file...")
-        #os.system("python tools/utils/making_annotation.py")
-        #os.system("python tools/utils/making_label.py")
+        os.system("python tools/utils/making_annotation.py")
+        os.system("python tools/utils/making_label.py")
 
         num_person_out = 2  # then choose 2 persons with the highest score
         max_frame = 300

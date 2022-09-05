@@ -4,6 +4,7 @@ import sys
 import argparse
 import yaml
 import numpy as np
+import matplotlib.pyplot as plt
 
 # torch
 import torch
@@ -32,6 +33,9 @@ class Processor(IO):
         self.gpu()
         self.load_data()
         self.load_optimizer()
+        self.train_loss_record = []
+        self.test_loss_record = []
+        self.accuracy_record = []
 
     def init_environment(self):
 
@@ -64,6 +68,8 @@ class Processor(IO):
                 shuffle=False,
                 num_workers=self.arg.num_worker * torchlight.ngpu(
                     self.arg.device))
+
+        print("num of workers: ", self.arg.device)
 
     def show_epoch_info(self):
         for k, v in self.epoch_info.items():
@@ -125,6 +131,25 @@ class Processor(IO):
                     self.io.print_log('Eval epoch: {}'.format(epoch))
                     self.test()
                     self.io.print_log('Done.')
+            
+            #loss, acccuracy 저장
+            #print(len(self.accuracy_record), self.accuracy_record)
+            test_epoch_axis = np.arange(0, self.arg.num_epoch, 5)
+            train_epoch_axis = np.arange(0, self.arg.num_epoch, 1)
+            plt.title('ACCURACY')
+            plt.plot(test_epoch_axis, self.accuracy_record, 'r-')
+            plt.savefig(self.arg.work_dir + '/Accuracy.png') 
+
+            plt.figure()
+            plt.title('LOSS')
+            fig, ax1 = plt.subplots()
+            ax1.plot(train_epoch_axis, self.train_loss_record, color = 'blue', label = 'TRAIN')
+            ax2 = ax1.twiny()
+            ax2.plot(test_epoch_axis, self.test_loss_record, color = 'red', label = 'TEST')
+            ax1.legend(loc = 'upper right')
+            ax2.legend(loc = 'lower right')
+            plt.savefig(self.arg.work_dir + '/Loss.png')    
+
         # test phase
         elif self.arg.phase == 'test':
 
@@ -174,7 +199,7 @@ class Processor(IO):
 
         # feeder
         parser.add_argument('--feeder', default='feeder.feeder', help='data loader will be used')
-        parser.add_argument('--num_worker', type=int, default=2, help='the number of worker per gpu for data loader')
+        parser.add_argument('--num_worker', type=int, default=4, help='the number of worker per gpu for data loader')
         parser.add_argument('--train_feeder_args', action=DictAction, default=dict(), help='the arguments of data loader for training')
         parser.add_argument('--test_feeder_args', action=DictAction, default=dict(), help='the arguments of data loader for test')
         parser.add_argument('--batch_size', type=int, default=256, help='training batch size')

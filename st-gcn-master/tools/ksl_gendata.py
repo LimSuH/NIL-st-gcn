@@ -47,7 +47,7 @@ def load_data(label_path, data_num, mode='train'):
         #label.append(ground_truth[i][1])
 
     if mode == 'test':
-        file_list = [random.choice(file_list) for i in range(int(data_num / 5))]
+        file_list = [random.choice(file_list) for i in range(int(data_num / 4))]
         #label = [random.choice(label) for i in range(int(data_num / 5))]
 
     return file_list
@@ -63,7 +63,7 @@ def get_data(video_json):
     # fill data_numpy
     data_numpy = np.zeros((Channel, Frame, Joint, Person))
     for frame_info in video_info['data']:
-        frame_index = frame_info['frame_index']
+        frame_index = frame_info['frame_index'] - 1
         for m, skeleton_info in enumerate(frame_info["skeleton"]):
             if m >= Person:
                 break
@@ -78,7 +78,7 @@ def get_data(video_json):
     # data_numpy[0][data_numpy[2] == 0] = 0
     # data_numpy[1][data_numpy[2] == 0] = 0
 
-    # get & check label index
+    # get label index
     label = video_info['label_index']
 
     # # data augmentation
@@ -105,7 +105,7 @@ def npy_and_pickle(fp, file_list, label_out_path, mode = 'train/'):
         data_numpy, label = get_data(video_json)
         label_list.append(label)
 
-        # data.npy(val_data.npy) 파일 저장
+        # data.npy(test_data.npy) 파일 저장
         if data_numpy is not None:
             fp[i, :, 0:data_numpy.shape[1], :, :] = data_numpy
         else:
@@ -116,7 +116,8 @@ def npy_and_pickle(fp, file_list, label_out_path, mode = 'train/'):
     # pkl파일 만들기
     with open(label_out_path, 'wb') as f:
         pickle.dump((file_list, list(label_list)), f)
-
+    
+    #class 종류 갯수
     return len(Counter(label_list))
 
 
@@ -130,7 +131,7 @@ if __name__ == '__main__':
     Frame = 300
     Joint = 18
     Person = 1
-    data_num = 100  # 원하는 데이터 갯수
+    data_num = 6288  # 원하는 데이터 갯수
     # 데이터를 training과 validation으로 분배 - 4:1 비율
 
     data = arg.data[5:]
@@ -154,7 +155,7 @@ if __name__ == '__main__':
         test_data_out_path,
         dtype='float32',
         mode='w+',
-        shape=(int(data_num / 5), 3, Frame, 18, Person))
+        shape=(int(data_num / 4), 3, Frame, 18, Person))
 
     file_list = load_data(train_label_path, data_num)
     test_file_list = load_data(test_label_path, data_num, mode='test')
@@ -175,9 +176,3 @@ if __name__ == '__main__':
         yaml.dump(set_class, y, default_flow_style=False)
 
     print("complete preprocessing-2")
-
-
-
-
-
-

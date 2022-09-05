@@ -74,13 +74,15 @@ class REC_Processor(Processor):
         hit_top_k = [l in rank[i, -k:] for i, l in enumerate(self.label)]
         accuracy = sum(hit_top_k) * 1.0 / len(hit_top_k)
         self.io.print_log('\tTop{}: {:.2f}%'.format(k, 100 * accuracy))
+        if k == 1:
+            self.accuracy_record.append(100 * accuracy)
 
     def train(self):
         self.model.train()
         self.adjust_lr()
         loader = self.data_loader['train']
         loss_value = []
-
+        
         for data, label in loader:
 
             # get data
@@ -104,6 +106,7 @@ class REC_Processor(Processor):
             self.meta_info['iter'] += 1
 
         self.epoch_info['mean_loss']= np.mean(loss_value)
+        self.train_loss_record.append(min(loss_value))
         self.show_epoch_info()
         self.io.print_timer()
 
@@ -136,6 +139,7 @@ class REC_Processor(Processor):
         if evaluation:
             self.label = np.concatenate(label_frag)
             self.epoch_info['mean_loss']= np.mean(loss_value)
+            self.test_loss_record.append(min(loss_value))
             self.show_epoch_info()
 
             # show top-k accuracy

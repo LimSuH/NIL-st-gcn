@@ -1,5 +1,5 @@
-base_lr: 0.1
-batch_size: 50
+base_lr: 0.01
+batch_size: 10
 device:
 - 0
 - 1
@@ -12,20 +12,20 @@ model_args:
     strategy: spatial
   in_channels: 3
   num_class: 7
-num_epoch: 50
+num_epoch: 20
 step:
 - 20
 - 30
 - 40
 - 50
-test_batch_size: 50
+test_batch_size: 10
 test_feeder_args:
-  data_path: ./data/KETI/skeleton/test_data.npy
-  label_path: ./data/KETI/skeleton/test_label.pkl
+  data_path: ./data/KETI/skeleton/test_data_100.npy
+  label_path: ./data/KETI/skeleton/test_label_100.pkl
 train_feeder_args:
-  data_path: ./data/KETI/skeleton/data.npy
-  label_path: ./data/KETI/skeleton/label.pkl
+  data_path: ./data/KETI/skeleton/data_100.npy
+  label_path: ./data/KETI/skeleton/label_100.pkl
   random_choose: true
   random_move: true
-  window_size: 150
+  window_size: 60
 work_dir: ./work_dir/recognition/KETI/ST_GCN
