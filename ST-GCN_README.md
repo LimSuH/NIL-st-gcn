@@ -35,7 +35,7 @@ NTU의 경우 skeleton 데이터를 포함하고 있습니다.
 st-gcn-master/data에 KETI 데이터 디렉토리를 만들었습니다!  
 디렉토리 구조는 다음과 같습니다.  
 </br>
-![image](https://user-images.githubusercontent.com/82634312/185132197-38e6d346-7e02-4ab8-9aed-6b01843907f9.png)  
+![그림1](https://user-images.githubusercontent.com/82634312/187357324-25e9e8b0-a62b-470f-ad31-6e7b6331f4ed.png)
 
 
   
@@ -180,9 +180,12 @@ NTU도 kinetics와 방식이 다를 뿐 같은 결과물을 만들어 냅니다.
 </br></br>
 
 
-1.다음을 입력하여 전처리를 실행합니다.  
+한국어 수어 데이터 전처리는 두 단계로 이루어 집니다.  
+(1) label 파일 생성 및 pose estimation - skeleton json파일 생성  
+(2) npy, pkl 파일 
 </br>
 
+##### (1) label 파일과 skeleton json 파일 생성
 lab 계정으로 접속합니다.  
 가상환경을 활성화 합니다. 반드시 잊지 말고 가상환경을 활성화 해주세요! openpose가 작동하지 않을 수 있습니다.  
 ```
@@ -191,7 +194,7 @@ conda activate pytorch
 
 전처리를 실행합니다.  
 ```
-python tools/ksl_gendata.py --data data/KETI --openpose /home/lab/openpose/build
+python tools/ksl_pose_estimation.py --data data/KETI
 ```  
 
 2. 엑셀 파일로부터 label.json 파일을 생성합니다.  
@@ -199,29 +202,32 @@ python tools/ksl_gendata.py --data data/KETI --openpose /home/lab/openpose/build
   - makine_lable.py 실행  
 </br>
 
-3. label.json파일로부터 영상 목록과 label index를 불러와 dictionary로 저장합니다.  
+3. openpose initialize  
 
-4. label index를 오름차순으로 정렬합니다.  
+4. def making_data 호출  
 
-5. 원하는 데이터 숫자만큼 영상 목록과 label index 리스트를 만듭니다.  
+5. def get_label 호출  
 
-6. openpose initialize  
+6. label index를 오름차순으로 정렬합니다.  
 
-7. 영상 목록으로 수어 영상 데이터를 불러와 pose estimation을 진행합니다.  
+7. label_train(test).json파일로부터 영상 목록과 label index를 불러와 dictionary로 저장합니다.  
 
-8. pose estimation의 결과로 좌표가 저장된 numpy 배열을 npy파일로 저장합니다.  
+8. 영상 목록으로 수어 영상 데이터를 불러와 pose estimation을 진행합니다  
 
-9. 영상 이름 - class index를 짝을 맞추어 pickle 파일로 저장합니다.  
+9. def making_json 호출 - skeleton과 label, label index로 json 파일을 만듭니다. 
 
-10. 이때, npy와 pkl 파일을 저장하면서 4:1로 training과 validation set을 분배해 저장합니다.  
-
-11. 최종결과물 - data.npy, lable.pkl / val_data.npy, val_label.pkl  
 </br>
 
 
-현재는 6001~8280 까지의 subset으로만 전처리를 진행하였습니다.  
-영상마다 길이가 워낙 달라서, 데이터에 따라 전처리 시간이 크게 달라지고 있습니다.  
-making_annotation, lable.py 파일은 tools/utils에 있습니다.  
+현재는 label_train.json, label_test.json에 기재된 모든 영상에 대해 전처리가 완료된 상황입니다.  
+경로는 data/KETI/raw/train, data/KETI/raw/test 입니다.  
+train 6288개 영상, test 6288개 영상 총 12576개 영상 처리에 28시간 정도 결렸습니다.    
+making_annotation, making_label.py 파일은 tools/utils에 있습니다.  
+</br>
+##### (2) npy, pkl 파일 생성 
+각 영상별로 만들어진 json 파일을 불러, 사용자가 원하는 갯수만큼 데이터 셋을 생성합니다. test(validation) set는 train set의 1/5 비율로 만들어 집니다.  
+
+
 </br>
 
 학습을 위해서는 데이터셋의 label index가 0,1,2.... 이렇게 순서대로 구성되어야 합니다.  
