@@ -7,6 +7,7 @@ A modification and minimum adoption from [the original repository](https://githu
 
 ### 1. Estimate keypoints
 Estimate 133 keypoints from raw video files and save to .npy files using HRNet.
+- Download the pre-trained whole-body pose model: [Google Drive](https://drive.google.com/file/d/1f_c3uKTDQ4DR3CrwMSI8qdsTKJvKVt7p/view?usp=sharing) and put it in directory `/keypoint_estimation`
 - Change VIDEO_PATH and OUTPUT_PATH in `estimate_keypoints.py` to the local video source and the directory to save .npy files, respectively.
 - Run `$ python estimate_keypoints.py [sub-directory name]`:
 e.g., for KETI data, a sub-directory name could be `0001~3000`, or `28079~30592`
