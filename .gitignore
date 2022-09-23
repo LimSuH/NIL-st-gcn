@@ -1,1 +1,12 @@
 *.pth
+*.csv
+
+save_*/
+
+data/
+
+keypoint_estimation/image/
+
+SL-GCN/work_dir/sign_joint_final/eval_results
+
+log.txt

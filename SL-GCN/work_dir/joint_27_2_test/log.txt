@@ -1,0 +1,1 @@
+[ Tue Sep 13 10:57:06 2022 ] Load weights from ./save_models/sign_joint_final-249.pt.
