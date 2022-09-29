@@ -100,13 +100,14 @@ detection은 손이 잡히면 화면에 박스를 그려주나, 손동작이 잡
 
 
 (2) hand estimation  
-inference_top_down_pose_model 은 손 keypoint에 대한 일정 신뢰도 이하는 빈 리스트 반환, 일정 손동작이 발생하면 keypoint 리스트인 hand_result 반환합니다.  
+inference_top_down_pose_model 은 손 keypoint에 대한 일정 신뢰도 이하는 빈 리스트를 반환하고,  
+일정 손동작이 발생하면 keypoint 리스트인 hand_result를 반환합니다.  
 위의 근거로 0001~3000까지의 KETI 데이터와 AUTSL 데이터의 손동작이 발생하지 않는 프레임 분포를 확인하였습니다.  
+  
+  
 
-</br>
-
-확인 방법은 단순하게 각 데이터 별 최대 프레임 길이로, 0으로 채워진 list 준비합니다. (AUTSL 156, KETI 432)  
-영상마다 프레임별로 hand result가 빈 list로 반환되면 해당 프레임 index의 숫자 +1 합니다.  
+확인 방법은 단순하게 각 데이터 별 최대 프레임 길이로, 0으로 채워진 list를 준비합니다. (AUTSL 156, KETI 432)  
+영상마다 프레임별로 hand result가 빈 list로 반환되면 해당 프레임 index의 숫자에 +1 합니다.  
 
 
 ```
