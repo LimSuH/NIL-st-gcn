@@ -218,8 +218,8 @@ def detect_remove:
  MAX:283.000
 ```
 </br>
-![image](https://user-images.githubusercontent.com/82634312/192946961-ad4ab511-4c81-4e61-8143-8f3114f974ce.png)  
 
+![image](https://user-images.githubusercontent.com/82634312/192946961-ad4ab511-4c81-4e61-8143-8f3114f974ce.png)  
 
   
 AUTSL과의 비교 분포도입니다.  
