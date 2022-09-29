@@ -74,7 +74,7 @@ SL-GCN 전처리는 기존에 estimation 된 npy 파일에서 움직임이 없�
 ##### 1. npy 파일의 keypoint들을 영상에 다시 표시하고 각자의 정확도를 살펴보았습니다.  
 
 (1) mmpose를 활용  
-[]
+
 
 (2) opencv를 활용  
 []
@@ -129,7 +129,7 @@ def check_noMove:
 
 
 그 결과, 손동작이 추정되지 않은 프레임의 분포는 다음과 같습니다.  
-![image](https://user-images.githubusercontent.com/82634312/192945291-c5891e85-6695-4b1c-87b1-dc22bc5cd236.png)  
+![image](https://user-images.githubusercontent.com/82634312/192951089-a36c7022-1a33-499f-b5bf-f3a291f0d8f9.png)  
 
 
 </br>
@@ -220,19 +220,7 @@ def detect_remove:
 </br>
 ![image](https://user-images.githubusercontent.com/82634312/192946961-ad4ab511-4c81-4e61-8143-8f3114f974ce.png)  
 
+
   
 AUTSL과의 비교 분포도입니다.  
 ![image](https://user-images.githubusercontent.com/82634312/192947075-9efaef7b-3a61-4d4f-82d0-f6df277ef948.png)  
-
-
-
-
-
-
-
-
-
-
-
-
-
