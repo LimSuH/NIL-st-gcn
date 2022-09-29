@@ -89,7 +89,7 @@ coco-whole body keypoints들의 hand keypoints들을 프레임에 표시해보�
 
 ##### 2. mmpose의 hand detection, hand estimation 활용  
 whole body의 hand 부분 keypoitns들과는 별개로, mmpose의 hand detection과 estimation을 사용하였습니다.  
-* 실제로 실행 결과 정확도 측면에서 차이를 보였습니다.  
+*실제로 실행 결과 정확도 측면에서 차이를 보였습니다.  
 
 
 (1) hand detection  
