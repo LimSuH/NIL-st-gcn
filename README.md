@@ -8,7 +8,7 @@ Sign Language Recognition을 위한 **ST-GCN**과 **ST-GCN-SL** 모델을 업로
 
 ###### 각 모델별 문서
 [ST-GCN](https://github.com/LimSuH/NIL-st-gcn/blob/main/ST-GCN_README.md)  
-[ST-GCN-SL](https://github.com/LimSuH/NIL-st-gcn/blob/main/ST-GCN-SL_README.md)
+[ST-GCN-SL](https://github.com/LimSuH/NIL-st-gcn/blob/main/ST-GCN-SL_README.md)  
 [SL-GCN]()
    
 ###### 한국 수어 데이터 세트
