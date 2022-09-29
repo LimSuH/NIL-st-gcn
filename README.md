@@ -53,14 +53,15 @@ ST-GCN의 동작 순서는 다음과 같다.
 
   
   
-
+</br></br></br>
 ## SL-GCN preprocessing  
 실행  
 
 ```
 cd /users/suhyeon/GitHub/NIL-st-gcn/simple-chal-slr/analization
-python remove_npy.py
-'''
+python remove_npy.py  
+```
+
 
 ### Details
 SL-GCN 전처리는 기존에 estimation 된 npy 파일에서 움직임이 없는 frame을 제거하는 방식으로 진행되었습니다.  
