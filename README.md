@@ -74,10 +74,13 @@ SL-GCN 전처리는 기존에 estimation 된 npy 파일에서 움직임이 없�
 ##### 1. npy 파일의 keypoint들을 영상에 다시 표시하고 각자의 정확도를 살펴보았습니다.  
 
 (1) mmpose를 활용  
+![KETI_SL_0000000023](https://user-images.githubusercontent.com/82634312/192952244-5b54f73d-70f9-43bf-b196-0e2118272be3.gif)  
 
 
 (2) opencv를 활용  
-[]
+![KETI_SL_0000000007](https://user-images.githubusercontent.com/82634312/192951982-e8595da4-9dad-4110-a07f-01e2d6cb2160.gif)  
+
+
 
 </br>
 둘 모두 어느정도의 정확도를 보이나, frame을 구분하기 위한 기준을 세우기에는 근거가 부족하였습니다.  
@@ -95,8 +98,7 @@ whole body의 hand 부분 keypoitns들과는 별개로, mmpose의 hand detection
 
 (1) hand detection  
 detection은 손이 잡히면 화면에 박스를 그려주나, 손동작이 잡히지 않으면 화면에 랜덤하게 박스를 그립니다.  
-
-[]  
+![KETI_SL_0000000002 avi](https://user-images.githubusercontent.com/82634312/192951660-44ec1246-854d-4d02-90b3-71e2194daa46.gif)  
 
 
 (2) hand estimation  
@@ -143,10 +145,20 @@ def check_noMove:
 ##### 영상  
 
 실제로 움직임이 없는 frame을 제거한 영상입니다. (저장 경로: /dataset/KETI_SignLanguage/removal)  
-https://user-images.githubusercontent.com/82634312/192945731-e01e138f-b7f4-46cc-9257-8815050425c6.mp4
-https://user-images.githubusercontent.com/82634312/192945783-4d56fba2-61a7-4af7-8687-6196cb183c48.mp4  
+![KETI_SL_0000023051](https://user-images.githubusercontent.com/82634312/192952302-8bceaa59-0d7a-4a3f-bd4c-16cddaec7c84.gif)  
+  
+*원본*  
+![KETI_SL_0000023051](https://user-images.githubusercontent.com/82634312/192953866-93149b3f-9410-4c77-b44c-60c520d69c3a.gif)  
+ 
 
-*원본 영상은 용량 문제로 업로드하지 못하였습니다. slack에서 확인해 주세요.  
+</br>
+
+![KETI_SL_0000040028 (1)](https://user-images.githubusercontent.com/82634312/192953434-aa3ca789-103a-4e93-8190-e143b08a4649.gif)  
+
+*원본*  
+![KETI_SL_0000040028](https://user-images.githubusercontent.com/82634312/192953901-e20099c9-a40d-45a9-875c-6dbc20bc97ba.gif)  
+
+ 
  
 
 </br></br>
