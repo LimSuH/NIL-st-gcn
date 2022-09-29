@@ -66,31 +66,36 @@ python remove_npy.py
 ### Details
 SL-GCN 전처리는 기존에 estimation 된 npy 파일에서 움직임이 없는 frame을 제거하는 방식으로 진행되었습니다.  
 
+</br>
 
 #### 움직임 없는 프레임을 분별하기 위한 기준 선별  
+  
 
 ##### 1. npy 파일의 keypoint들을 영상에 다시 표시하고 각자의 정확도를 살펴보았습니다.  
 
 (1) mmpose를 활용  
-https://user-images.githubusercontent.com/82634312/192942724-8edd212a-8ece-44d0-918c-74d2a1d3c854.mp4
+[]
 
 (2) opencv를 활용  
-https://user-images.githubusercontent.com/82634312/192942672-37c8283b-f210-4146-bd40-b48c99314e8f.mp4
+[]
 
-
+</br>
 둘 모두 어느정도의 정확도를 보이나, frame을 구분하기 위한 기준을 세우기에는 근거가 부족하였습니다.  
-coco-whole body keypoints들의 hand keypoints들을 프레임에 표시해보거나, 신뢰도도 함께 비교해 보았으나,
-마찬가지로 손동작이 발생했다고 판단할만한 근거로 삼기 어려웠습니다.
+
+coco-whole body keypoints들의 hand keypoints들을 프레임에 표시해보거나, 신뢰도도 함께 비교해 보았으나,  
+마찬가지로 손동작이 발생했다고 판단할만한 근거로 삼기 어려웠습니다.  
+
+</br>
 
 ##### 2. mmpose의 hand detection, hand estimation 활용  
 whole body의 hand 부분 keypoitns들과는 별개로, mmpose의 hand detection과 estimation을 사용하였습니다.  
-*실제로 실행 결과 정확도 측면에서 차이를 보였습니다.*  
+* 실제로 실행 결과 정확도 측면에서 차이를 보였습니다.  
 
 
 (1) hand detection  
 detection은 손이 잡히면 화면에 박스를 그려주나, 손동작이 잡히지 않으면 화면에 랜덤하게 박스를 그립니다.  
 
-https://user-images.githubusercontent.com/82634312/192944964-a23b4f65-fb06-47ea-8f45-c71efc293660.mp4
+[]  
 
 
 (2) hand estimation  
@@ -118,13 +123,16 @@ def check_noMove:
             	if not hand_results:
                 		whole_stop[frame_id] += 1
 
-```
+```  
+
 
 그 결과, 손동작이 추정되지 않은 프레임의 분포는 다음과 같습니다.  
 ![image](https://user-images.githubusercontent.com/82634312/192945291-c5891e85-6695-4b1c-87b1-dc22bc5cd236.png)  
+
+
 </br>
 
-실제 영상도    
+실제 영상은    
 ** 대기자세(손동작 없음) - 수어 동작 - 수어 완료 후 손을 내리면서 영상이 종료 ** 의 구성을 가지고 있습니다.  
 따라서 손동작이 없는 frame은 영상의 앞 부분에 분포해 있으며, ** 첫 프레임 ~ hand_result가 발생한 순간까지의 frame ** 을 잘라내면 움직임 없는 frame을 제거 할수 있을것이라고 판단하였습니다.  
 </br></br>
@@ -134,21 +142,24 @@ def check_noMove:
 
 실제로 움직임이 없는 frame을 제거한 영상입니다. (저장 경로: /dataset/KETI_SignLanguage/removal)  
 https://user-images.githubusercontent.com/82634312/192945731-e01e138f-b7f4-46cc-9257-8815050425c6.mp4
-https://user-images.githubusercontent.com/82634312/192945783-4d56fba2-61a7-4af7-8687-6196cb183c48.mp4
-* 원본 영상은 용량 문제로 업로드하지 못하였습니다. slack에서 확인해 주세요 *  
+https://user-images.githubusercontent.com/82634312/192945783-4d56fba2-61a7-4af7-8687-6196cb183c48.mp4  
+
+*원본 영상은 용량 문제로 업로드하지 못하였습니다. slack에서 확인해 주세요.  
+ 
 
 </br></br>
-신뢰할 만한 결과를 바탕으로, 이번에는 영상이 아니라 ** 기존에 estimation 된 npy파일** 에서 필요없는 frame 제거를 진행하였습니다.  
+신뢰할 만한 결과를 바탕으로 이번에는 영상이 아니라, 기존에 estimation 된 npy파일 에서 필요없는 frame 제거를 진행하였습니다.  
   
-##### npy 파일
+##### npy 파일  
 
 remove_npy.py는 두가지 경우의 frame 제거를 실행합니다. (frame 제거를 모든 영상에 대해 실행하지 않았기 때문입니다)  
 </br> 
 
-(공통) /dataset/KETI_SignLanguage/Keypoints-MMPOSE에 저장된 npy 파일을 불러옴  
+**(공통)**  
+/dataset/KETI_SignLanguage/Keypoints-MMPOSE에 저장된 npy 파일을 불러옴  
+</br>
   
-  
-(1) npy 파일의 원본 영상이 /dataset/KETI_SignLanguage/removal 에 존재  
+**(1) npy 파일의 원본 영상이 /dataset/KETI_SignLanguage/removal 에 존재**  
 npy파일을 로드하고, frame이 제거된 영상의 프레임 수만큼 뒤에서부터 슬라이싱합니다.  
 
 ```
@@ -163,8 +174,9 @@ def video_exist:
 ```
 </br> 
 
-(2) removal에 영상이 저장되지 않은 경우  
-
+**(2) /removal에 영상이 저장되지 않은 경우**  
+   
+   
 원본 영상을 불러와 hand estimation을 진행하고,  
 hand_result가 발생한 frame부터 npy 파일을 슬라이싱합니다.  
 
@@ -190,6 +202,8 @@ def detect_remove:
 ```
 
 실행 결과 /dataset/KETI_SignLanguage/Keypoints-removal에 총 33517개 영상에 대한 npy 파일이 저장되어 있습니다.  
+</br>
+
 
 #### frame 제거 후 프레임 길이 분포  
 프레임을 제거 후 KETI 데이터의 프레임 분포는 다음과 같습니다.  
@@ -203,9 +217,11 @@ def detect_remove:
 ```
 </br>
 ![image](https://user-images.githubusercontent.com/82634312/192946961-ad4ab511-4c81-4e61-8143-8f3114f974ce.png)  
+
   
 AUTSL과의 비교 분포도입니다.  
 ![image](https://user-images.githubusercontent.com/82634312/192947075-9efaef7b-3a61-4d4f-82d0-f6df277ef948.png)  
+
 
 
 
