@@ -145,18 +145,18 @@ def check_noMove:
 ##### 영상  
 
 실제로 움직임이 없는 frame을 제거한 영상입니다. (저장 경로: /dataset/KETI_SignLanguage/removal)  
-![KETI_SL_0000023051](https://user-images.githubusercontent.com/82634312/192952302-8bceaa59-0d7a-4a3f-bd4c-16cddaec7c84.gif)  
+*위:원본 영상, 아래: frame 제거 영상*  
   
-*원본*  
-![KETI_SL_0000023051](https://user-images.githubusercontent.com/82634312/192953866-93149b3f-9410-4c77-b44c-60c520d69c3a.gif)  
- 
+  
+
+https://user-images.githubusercontent.com/82634312/192956184-268997ef-862c-40bf-9ecf-6d01141bb662.mp4  
 
 </br>
 
-![KETI_SL_0000040028 (1)](https://user-images.githubusercontent.com/82634312/192953434-aa3ca789-103a-4e93-8190-e143b08a4649.gif)  
+https://user-images.githubusercontent.com/82634312/192956223-03b24ef4-99c5-4602-acfb-c00ea6f71182.mp4
 
-*원본*  
-![KETI_SL_0000040028](https://user-images.githubusercontent.com/82634312/192953901-e20099c9-a40d-45a9-875c-6dbc20bc97ba.gif)  
+
+
 
  
  
