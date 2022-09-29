@@ -219,7 +219,7 @@ def detect_remove:
 ```
 </br>
 
-![image](https://user-images.githubusercontent.com/82634312/192946961-ad4ab511-4c81-4e61-8143-8f3114f974ce.png)  
+![image](https://user-images.githubusercontent.com/82634312/192951336-6c13cff8-d274-4401-9db5-36caa9dac9dd.png)
 
   
 AUTSL과의 비교 분포도입니다.  
