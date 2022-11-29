@@ -236,3 +236,5 @@ def detect_remove:
   
 AUTSL과의 비교 분포도입니다.  
 ![image](https://user-images.githubusercontent.com/82634312/192947075-9efaef7b-3a61-4d4f-82d0-f6df277ef948.png)  
+
+</br></br></br></br>
