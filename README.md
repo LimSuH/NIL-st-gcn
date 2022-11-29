@@ -2,6 +2,9 @@
 Sign Language Recognition을 위한 **ST-GCN**과 **ST-GCN-SL** 모델을 업로드한 리포지토리 입니다.  
   
   
+  
+###### [연구 수행 과정 기록](https://github.com/LimSuH/NIL-st-gcn/blob/main/README.md#%EC%97%B0%EA%B5%AC-%EC%88%98%ED%96%89-%EA%B3%BC%EC%A0%95)
+  
 ###### 원본 리포지토리 링크  
 [ST-GCN](https://github.com/yysijie/st-gcn)  
 [ST-GCN-SL](https://github.com/amorim-cleison/st-gcn-sl)  
