@@ -23,11 +23,13 @@
 기존 openmmlab detection 이용한 방식은 같으나(npy_frame_remove), 중간 부분을 자르지 않기 위해 영상 프레임 리스트 순서를 뒤집음  
 mmcv. 로 영상을 불러옴 ~~ type 확인 필요~~ : <class 'mmcv.video.io.VideoReader'>  
 list와 같은 취급 가능함 확인  
-  
+영상과 npy 뒤집어 기존 프레임 제거방법과 같은 원리로 프레임 제거함
   
 단, 영상 마지막 부분에 나타나는 노이즈는 손가락이 안보이는 문제 때문이 아닌것 같음... keypoint estimation 과정에서 좌표값 자체에 노이즈가 섞인듯  
 --> 끝부분이 아니더라도 노이즈가 섞임을 보임 (KETI_SL_0000000396.mp4)  
 그렇다고 그런 부분들이 score 값이 낮은것도 아님 그들은 이미 확신을 하고 있음(애초에 score값을 크게 기대할수 없는듯  
+score값 - 정상적인 좌표는 0.79~ 0.8 정도의 값을 가지고, noise는 0.17~ 0.1 이하의 값을 가짐 그러나 위의 이유 때문에 score로 판단할 순 없다
+score로 지우면 좌표는 무엇으로 대체되는가? 0? 그럼 그건 또 다른 noise?  
   
 #### angle data encoding  
 참고: https://stats.stackexchange.com/questions/218407/encoding-angle-data-for-neural-network  
