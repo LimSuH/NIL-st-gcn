@@ -177,7 +177,7 @@ def detect_remove:
         exist_npy = exist_npy[start_frame:]
         np.save('Keypoints-removal/')
 ```
-###### 실제 구현 코드 
+###### 실제 구현 코드(npy_frame_remove.py)  
 ```
 for frame_id, cur_frame in enumerate(mmcv.track_iter_progress(video)):
             print(' ({} / {})'.format(i + 1, len(videos)), end=' ')
