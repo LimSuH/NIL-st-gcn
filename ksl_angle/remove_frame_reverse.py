@@ -63,6 +63,9 @@ def detect_remove(videos, dataset):
             mmdet_results = inference_detector(det_model, cur_frame)
             detect_results = process_mmdet_results(mmdet_results, args_det_cat_id)
 
+            #mmpose hand estimation을 이용한 손이 보이는지 여부 판정
+            #inference_top_down_pose_model은 hand detect 영역(detect_results)안에서 hand keypoint를 반환함
+            #만약 손이 검출되지 않아 제대로 된 hand keypoint를 얻지 못했을 경우, 빈 리스트를 반환
             hand_results, returned_outputs = inference_top_down_pose_model(
                 hand_model,
                 cur_frame,
@@ -74,6 +77,7 @@ def detect_remove(videos, dataset):
                 return_heatmap=False,
                 outputs=None)
 
+            #hand_results가 존재한다는 것은 유효한 hand keypoint를 반환 받았음을 의미 = 손이 보인다고 판정
             if hand_results:
                 start_frame = frame_id
                 break
