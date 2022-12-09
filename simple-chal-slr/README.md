@@ -178,7 +178,7 @@ def detect_remove:
         np.save('Keypoints-removal/')
 ```
 ###### 실제 구현 코드  
-(video_frame_remove.py)  
+(video_frame_remove.py 37~60줄)  
 ```
 for frame_id, cur_frame in enumerate(mmcv.track_iter_progress(video)):
             print(' ({} / {})'.format(i + 1, len(videos)), end=' ')
@@ -213,7 +213,7 @@ for frame_id, cur_frame in enumerate(mmcv.track_iter_progress(video)):
 ```
 </br>
 
-(video_frame_remove.py 37~60줄)  
+(npy_frame_remove.py 74~101줄)  
 ```
 for frame_id, cur_frame in enumerate(mmcv.track_iter_progress(video)):
             print(' ({} / {})'.format(i + 1, len(videos)), end=' ')
