@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # NIL-st-gcn
 Sign Language Recognition을 위한 **ST-GCN**과 **ST-GCN-SL** 모델을 업로드한 리포지토리 입니다.  
   
@@ -49,3 +50,17 @@ ST-GCN의 동작 순서는 다음과 같다.
     --> 중심 노드 a와 직접 연결된 노드들의 피처에 weight를 곱하여 더한다. 이 값은 다음 레이어의 중심노드 a의 피처값으로 업데이트된다.
 
 5. 모든 컨볼루션 연산이 끝나면, 최종적으로 얻은 피처 맵으로 softMax classifier을 이용해 각 카테고리별 점수를 얻는다. 최고로 높은 점수를 가진 라벨로 동작을 분류한다.
+=======
+# Simplified Chal-SLR Repository
+
+A modification and minimum adoption from [the original repository](https://github.com/jackyjsy/CVPR21Chal-SLR)
+
+`/keypoint_estimation`: estimate keypoints from video files to save .npy files
+<br>
+
+`/preprocess_label`: collect video file names and matching labels from a dataset directory matching a certain condition
+
+`/SL-GCN`
+- `integrate_npys.ipynb`: integrate keypoint .npy files and labels to make train-ready files
+- `main.py`: main code to train, finetune, and test models
+>>>>>>> cec170399a091006551497f5f91ad760a1b08c89
