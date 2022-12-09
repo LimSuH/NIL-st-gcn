@@ -177,7 +177,43 @@ def detect_remove:
         exist_npy = exist_npy[start_frame:]
         np.save('Keypoints-removal/')
 ```
-###### 실제 구현 코드(npy_frame_remove.py 74~101줄)  
+###### 실제 구현 코드  
+(video_frame_remove.py)  
+```
+for frame_id, cur_frame in enumerate(mmcv.track_iter_progress(video)):
+            print(' ({} / {})'.format(i + 1, len(videos)), end=' ')
+            mmdet_results = inference_detector(det_model, cur_frame)
+            detect_results = process_mmdet_results(mmdet_results, args_det_cat_id)
+	    
+	    #mmpose hand estimation을 이용한 손이 보이는지 여부 판정
+            #inference_top_down_pose_model은 hand detect 영역(detect_results)안에서 hand keypoint를 반환함
+            #만약 손이 검출되지 않아 제대로 된 hand keypoint를 얻지 못했을 경우, 빈 리스트를 반환
+	    
+            hand_results, returned_outputs = inference_top_down_pose_model(
+            hand_model,
+            cur_frame,
+            detect_results,
+            bbox_thr = args_bbox_thr,
+            format='xyxy',
+            dataset=hand_dataset,
+            dataset_info=hand_dataset_info,
+            return_heatmap=False,
+            outputs=None)
+ 	    
+	    #hand_results가 존재한다는 것은 유효한 hand keypoint를 반환 받았음을 의미 = 손이 보인다고 판정
+            #손동작이 시작된 프레임부터 영상 생성
+            if hand_results:
+                write_video = True
+
+            if write_video:
+                videoWriter.write(cur_frame)
+            else:
+                cv2.imwrite('moving!'+ str(frame_id) + '.png', cur_frame)
+        videoWriter.release()
+```
+</br>
+
+(video_frame_remove.py 37~60줄)  
 ```
 for frame_id, cur_frame in enumerate(mmcv.track_iter_progress(video)):
             print(' ({} / {})'.format(i + 1, len(videos)), end=' ')
@@ -187,7 +223,8 @@ for frame_id, cur_frame in enumerate(mmcv.track_iter_progress(video)):
             #mmpose hand estimation을 이용한 손이 보이는지 여부 판정
             #inference_top_down_pose_model은 hand detect 영역(detect_results)안에서 hand keypoint를 반환함
             #만약 손이 검출되지 않아 제대로 된 hand keypoint를 얻지 못했을 경우, 빈 리스트를 반환
-            hand_results, returned_outputs = inference_top_down_pose_model(
+            
+	    hand_results, returned_outputs = inference_top_down_pose_model(
             hand_model,
             cur_frame,
             detect_results,
@@ -200,12 +237,14 @@ for frame_id, cur_frame in enumerate(mmcv.track_iter_progress(video)):
 
             #hand_results가 존재한다는 것은 유효한 hand keypoint를 반환 받았음을 의미 = 손이 보인다고 판정
             #손동작이 시작된 프레임 저장
-            if hand_results:
+            
+	    if hand_results:
                 start_frame = frame_id
                 break
         
         #유효한 손동작이 보인 프레임부터 새 npy 파일 생성
-        exist_npy = exist_npy[start_frame : ]
+        
+	exist_npy = exist_npy[start_frame : ]
         np.save(output_dir, exist_npy)
 ```
 
