@@ -43,5 +43,8 @@ npy까지 만들어놓나 / 모델 넣기 직전에 변환을 하는가
 [frame, cos, sin] ~> batch로 들어가면 4d가 되는데 cos, sin을 묶어서 한 차원으로? [frame, (cos, sin)]  
 list 구조만 같게 해서 테스트 필요
 
+#### 손이 보이지 않는 frame check  
+기존 histogram 토드르 이용하여 plot을 그림, /users/suhyeon/GitHub/NIL-st-gcn/ksl_angle/no_hand_frame.py
+
 
 
