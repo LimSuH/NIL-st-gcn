@@ -46,6 +46,6 @@ list 구조만 같게 해서 테스트 필요
 #### 손이 보이지 않는 frame check  
 기존 histogram 토드르 이용하여 plot을 그림, /users/suhyeon/GitHub/NIL-st-gcn/ksl_angle/no_hand_frame.py  
 실행 ~ cuda 문제 발생,  
-RuntimeError: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 804: forward compatibility was attempted on non supported HW
+RuntimeError: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 804: forward compatibility was attempted on non supported HW  
 
-
+Failed to initialize NVML: Driver/library version mismatch
