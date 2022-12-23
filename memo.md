@@ -44,7 +44,7 @@ npy까지 만들어놓나 / 모델 넣기 직전에 변환을 하는가
 list 구조만 같게 해서 테스트 필요
 
 #### 손이 보이지 않는 frame check  
-기존 histogram 토드르 이용하여 plot을 그림, /users/suhyeon/GitHub/NIL-st-gcn/ksl_angle/no_hand_frame.py  
+기존 histogram 코드(simple_chal-slr) 이용하여 plot을 그림, /users/suhyeon/GitHub/NIL-st-gcn/ksl_angle/no_hand_frame.py  
 실행 ~ cuda 문제 발생,  
 RuntimeError: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 804: forward compatibility was attempted on non supported HW  
 
