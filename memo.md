@@ -81,4 +81,23 @@ annotation(csv 파일) -> 주요 정보를 추출하여 json 파일로 따로 �
 사용자로부터 원하는 속성명을 받아서 사용하도록 교체  
 
 +) simple-chal-slr 안의 SL-GCN 중복 
-
+  
+   
+ ```
+ sample_data, sample_label= mydataset[0]
+ print(sample_data.shape, sample_label)
+ ```
+ output:  
+ (71, 24) test  
+    
+    
+ ```
+ trainset = DataLoader(mydataset, batch_size=batch_size)
+ sample, label = next(iter(trainset))
+ print(sample.shape, label)
+ ```
+ output:  
+ torch.Size([1, 71, 24]) ('test',)  
+    
+ -> 둘의 차이는 dataLoader로 감쌌기 때문인가  
+ 타입도 달라지고 지정한 batch_size때문에 차원이 하나 더 생기는
