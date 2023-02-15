@@ -51,7 +51,7 @@ RuntimeError: Unexpected error from cudaGetDeviceCount(). Did you run some cuda 
 Failed to initialize NVML: Driver/library version mismatch
 
 
-
+</br></br>
 #### Custom Dataset/DataLoader  
 ```
 class CustomImageDataset(Dataset):
@@ -77,5 +77,6 @@ class CustomImageDataset(Dataset):
 수어연구 에서 데이터와 label을 불러오는법  
 annotation(csv 파일) -> 주요 정보를 추출하여 json 파일로 따로 저장 -> json 파일로부터 데이터 디렉토리, label을 읽어들임  
 
-굳이 json파일 생성이라는 과정을 한번 더 거칠 필요가 있을까?  ***<- 전체 annotation에서 사용할 데이터만 모으느라 이 과정을 거친것***
-사용자로부터 column 명을 지정받아 디렉토리와 label만을 읽어들인다면?  
+프로젝트 json파일 생성이라는 과정을 한 번 더 수정해야 하는가?  ***<- 전체 주석에서 날짜만 모아서 이 과정을 거칠 것***  
+사용자로부터 원하는 속성명을 받아서 사용하도록 교체  
+
