@@ -49,3 +49,33 @@ list 구조만 같게 해서 테스트 필요
 RuntimeError: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 804: forward compatibility was attempted on non supported HW  
 
 Failed to initialize NVML: Driver/library version mismatch
+
+
+
+#### Custom Dataset/DataLoader  
+```
+class CustomImageDataset(Dataset):
+    def __init__(self, annotations_file, img_dir, transform=None, target_transform=None):
+        self.img_labels = pd.read_csv(annotations_file, names=['file_name', 'label'])
+        self.img_dir = img_dir
+        self.transform = transform
+        self.target_transform = target_transform
+
+    def __len__(self):
+        return len(self.img_labels)
+
+    def __getitem__(self, idx):
+        img_path = os.path.join(self.img_dir, self.img_labels.iloc[idx, 0])
+        image = read_image(img_path)
+        label = self.img_labels.iloc[idx, 1]
+        if self.transform:
+            image = self.transform(image)
+        if self.target_transform:
+            label = self.target_transform(label)
+        return image, label
+``` 
+수어연구 에서 데이터와 label을 불러오는법  
+annotation(csv 파일) -> 주요 정보를 추출하여 json 파일로 따로 저장 -> json 파일로부터 데이터 디렉토리, label을 읽어들임  
+
+굳이 json파일 생성이라는 과정을 한번 더 거칠 필요가 있을까?  ***<- 전체 annotation에서 사용할 데이터만 모으느라 이 과정을 거친것***
+사용자로부터 column 명을 지정받아 디렉토리와 label만을 읽어들인다면?  
