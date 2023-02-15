@@ -105,4 +105,7 @@ annotation(csv 파일) -> 주요 정보를 추출하여 json 파일로 따로 �
     
  각도 데이터 넣었을때 shape 관련 오류  
  차원이 아니라 frame 때문이었음  
- 각 영상마다 frame 길이가 다르므로 미리 데이터 형태를 지정x
+ 각 영상마다 frame 길이가 다르므로 미리 데이터 형태를 지정x  
+ 
+ torch.Size([batch, frame, angle]) 에서 angle의 갯수는 변하지 않음, input size만 입력하면 되는 1d conv나 RNN, LSTM?
+ 
