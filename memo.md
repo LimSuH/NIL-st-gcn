@@ -109,3 +109,6 @@ annotation(csv 파일) -> 주요 정보를 추출하여 json 파일로 따로 �
  
 ~> (1)transformer에서 일정 frame길이로 잘라내기, 덧붙이기: frame 길이 뽑은것의 평균/최빈값/....  
    (2)outchannel을 알아내서 계산?
+   
+** 1dcnn을 이용한 동작 분류 예제:**  
+https://st4ndup.tistory.com/13
