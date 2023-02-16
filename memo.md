@@ -171,6 +171,7 @@ class CustomNeuralNetwork(nn.Module):
             nn.ReLU(),
             nn.Conv1d(34, 14, 6, stride=2),
             nn.ReLU()
+	    #----> network 수정 필요, 1,1,n으로 최종 결과....)
         )
         
 
