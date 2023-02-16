@@ -110,5 +110,168 @@ annotation(csv 파일) -> 주요 정보를 추출하여 json 파일로 따로 �
 ~> (1)transformer에서 일정 frame길이로 잘라내기, 덧붙이기: frame 길이 뽑은것의 평균/최빈값/....  
    (2)outchannel을 알아내서 계산?
    
-** 1dcnn을 이용한 동작 분류 예제:**  
+**1dcnn을 이용한 동작 분류 예제:**  
 https://st4ndup.tistory.com/13
+
+**작성한 코드 in Neuron3**  
+```
+import torch
+from torch import nn
+from torch.utils.data import Dataset
+from torch.utils.data import DataLoader
+from torchvision import datasets
+from torchvision import transforms
+from torchvision.transforms import ToTensor
+
+import os
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+#custom dataset
+class CustomDataset(Dataset):
+    def __init__(self, annotation_file, data_dir, transform=None, target_transform=None, col_name="file_name", col_label="label"):
+        self.label = pd.read_csv(annotation_file, names=[col_name, col_label], skiprows=[0])
+        self.data_dir = data_dir
+        self.transform = transform
+        self.target_transform = target_transform
+
+    def __len__(self):
+        return len(self.label)
+
+    def __getitem__(self, index):
+        data_path = os.path.join(self.data_dir, self.label.iloc[index, 0])
+        data = np.load(data_path)
+        label = np.zeros(15, dtype = np.float32)
+        label[self.label.iloc[index, 1]] = 1.0
+        
+        if self.transform:
+            data = self.transform(data)
+        if self.target_transform:
+            label = self.target_transform(label)
+        
+        return data, label
+
+#custom transfomer
+class myTransformer(object):
+    def __call__(self, sample):
+        sample = sample.astype(np.float32)
+        sample = np.transpose(sample)     
+        sample = torch.from_numpy(sample)
+        print(sample.shape)   
+        return sample
+
+# model
+class CustomNeuralNetwork(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.flatten = nn.Flatten()
+        self.one_stack = nn.Sequential(
+            nn.Conv1d(24, 34, 3, stride=2),
+            nn.ReLU(),
+            nn.Conv1d(34, 14, 6, stride=2),
+            nn.ReLU()
+        )
+        
+
+    def forward(self, x):
+        #x = self.flatten(x)
+        x = self.one_stack(x)
+        return x
+
+#trainig & test function
+def training(dataloader, model, criterion, optim):
+    for data, label in dataloader:
+        data = data.to(device)
+        label = label.to(device)
+
+        #prediction(forward)
+        pred = model(data)
+        print(pred.shape, label.shape)
+        loss = criterion(pred, label)
+        
+        #backward
+        optim.zero_grad()
+        loss.backward()
+        optim.step()
+
+    return loss.item()
+
+def test(dataloader, model, criterion, optim):
+    total_loss = 0
+    accuracy = 0
+    model.eval()
+    with torch.no_grad():
+        for data, label in dataloader:
+            data = data.to(device)
+            label = label.to(device)
+
+            #prediction(forward)
+            pred = model(data)# pred 결과가 1, 15(14, 15)x
+            loss = criterion(pred, label)
+
+            total_loss += loss.item
+            if pred.argmax(1) == label: accuracy += 1
+
+    accuracy /= accuracy/len(dataloader)*100
+    total_loss /= len(dataloader)
+    
+    return accuracy, total_loss
+
+#prediction
+def prediction(sample, label, model):
+    model.eval()
+
+    with torch.no_grad():
+        pred = model(sample)
+        if pred.argmax(1) == label:
+            print("The predicton is correct.")
+        else:
+            print("The prediction is wrong.")
+    print(model)
+
+
+if __name__ == "__main__":
+    #check gpu
+    use_cuda = torch.cuda.is_available()
+    device = torch.device('cuda:0' if use_cuda else "cpu")
+    print(device)
+
+    annotation_file = "test_annotation.csv"
+    data_dir = "./"
+    batch_size = 1
+    
+    #dataset
+    mydataset = CustomDataset(annotation_file , data_dir, transform=myTransformer())
+    trainset = DataLoader(mydataset, batch_size=batch_size)
+    sample, label = next(iter(trainset))
+    print("next dataloader", sample.shape)
+
+    #model
+    myModel = CustomNeuralNetwork().to(device)
+    # print(myModel)
+
+    #training
+    epochs = 100
+    criterion = nn.CrossEntropyLoss()
+    optimization = torch.optim.SGD(myModel.parameters(), lr=0.01)
+    best_loss = 100
+
+    for epoch_num in range(epochs):
+        loss = training(trainset, myModel, criterion, optimization)
+
+        print(f"Epoch: {epoch_num} / {epochs}, Loss: {loss}")
+
+        if epoch_num % 10 == 0:
+            accuracy, test_loss = test(trainset, myModel, criterion, optimization)
+            print(f"Evaluation: \n, Accuracy: {accuracy}, Loss: {test_loss}")
+        
+        if test_loss < best_loss:
+            torch.save(myModel.state_dict, "./save/epoch_" + str(epoch_num) + ".pth")
+            print("The best model state updated.")
+
+    #draw plot with best model
+    best_model = CustomNeuralNetwork()
+    best_model.load_state_dict(torch.load(os.listdir("./save")[-1]))
+    prediction(sample, label, best_model)
+```
