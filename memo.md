@@ -114,6 +114,10 @@ annotation(csv 파일) -> 주요 정보를 추출하여 json 파일로 따로 �
 https://st4ndup.tistory.com/13
 
 **작성한 코드 in Neuron3**  
+<details>
+<summary>펼치기</summary>
+<div markdown="1">
+
 ```
 import torch
 from torch import nn
@@ -276,3 +280,7 @@ if __name__ == "__main__":
     best_model.load_state_dict(torch.load(os.listdir("./save")[-1]))
     prediction(sample, label, best_model)
 ```
+
+
+</div>
+</details>
