@@ -376,5 +376,9 @@ print(f"Average precision:{precision}, Average recall:{recall}, F1 Score:{f1}")
 ##### F1Score #####
 [참고한 링크](https://leedakyeong.tistory.com/entry/%EB%B6%84%EB%A5%98-%EB%AA%A8%EB%8D%B8-%EC%84%B1%EB%8A%A5-%ED%8F%89%EA%B0%80-%EC%A7%80%ED%91%9C-Confusion-Matrix%EB%9E%80-%EC%A0%95%ED%99%95%EB%8F%84Accuracy-%EC%A0%95%EB%B0%80%EB%8F%84Precision-%EC%9E%AC%ED%98%84%EB%8F%84Recall-F1-Score)  
 
-아직 데이터를 하나밖에 넣지 않아 제대로 동작하지 않음(분모 0 에러)
+아직 데이터를 하나밖에 넣지 않아 제대로 동작하지 않음(분모 0 에러)  
 ~~ 만들어둔 각도 데이터 프레임 분포 분석으로 데이터 길이를 통일하고, 실제 label 불러와 csv 파일 적용시켜 학습 돌려보기  
+/users/suhyeon/GitHub/NIL-st-gcn/simple-chal-slr/analization/jupyter/about_frame.ipynb --> Keypoints-removal 데이터를 기준으로 frame 분포 정보를 확인한 jupyter notebook  
+살펴보고 어떤 값을 기준으로 프레임 길이를 정할지 결정  
+**프레임 패딩 방법**
+
