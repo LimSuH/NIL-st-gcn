@@ -162,7 +162,7 @@ class myTransformer(object):
         sample = sample.astype(np.float32)
         sample = np.transpose(sample)     
         sample = torch.from_numpy(sample)
-        print(sample.shape)   
+        #print(sample.shape)   
         return sample
 
 # model
@@ -171,11 +171,12 @@ class CustomNeuralNetwork(nn.Module):
         super().__init__()
         self.flatten = nn.Flatten()
         self.one_stack = nn.Sequential(
-            nn.Conv1d(24, 34, 3, stride=2),
+            nn.Conv1d(24, 34, 3, stride=1),
             nn.ReLU(),
-            nn.Conv1d(34, 14, 6, stride=2),
-            nn.ReLU()
-	    #----> network 수정 필요, 1,1,n으로 최종 결과....)
+            nn.Conv1d(34, 14, 3, stride=1),
+            nn.ReLU(),
+            nn.Flatten(1, -1),
+            nn.Linear(14*67, 15)
         )
         
 
@@ -186,13 +187,15 @@ class CustomNeuralNetwork(nn.Module):
 
 #trainig & test function
 def training(dataloader, model, criterion, optim):
+    total_loss = 0
+    accuracy = 0
+
     for data, label in dataloader:
         data = data.to(device)
         label = label.to(device)
 
         #prediction(forward)
         pred = model(data)
-        print(pred.shape, label.shape)
         loss = criterion(pred, label)
         
         #backward
@@ -200,11 +203,21 @@ def training(dataloader, model, criterion, optim):
         loss.backward()
         optim.step()
 
-    return loss.item()
+        total_loss += loss.item()
+
+
+        if pred.argmax(1) == label.argmax(1): 
+            accuracy += 1
+    accuracy = accuracy/len(dataloader)*100
+    total_loss /= len(dataloader)
+
+    return accuracy, total_loss
 
 def test(dataloader, model, criterion, optim):
     total_loss = 0
     accuracy = 0
+    f1Score = 0
+    
     model.eval()
     with torch.no_grad():
         for data, label in dataloader:
@@ -215,70 +228,144 @@ def test(dataloader, model, criterion, optim):
             pred = model(data)# pred 결과가 1, 15(14, 15)x
             loss = criterion(pred, label)
 
-            total_loss += loss.item
-            if pred.argmax(1) == label: accuracy += 1
-
-    accuracy /= accuracy/len(dataloader)*100
+            total_loss += loss.item()
+            if pred.argmax(1) == label.argmax(1): 
+                accuracy += 1
+   
+    accuracy = accuracy/len(dataloader)*100
     total_loss /= len(dataloader)
     
     return accuracy, total_loss
 
+
+def F1Score(testLoader, model):
+    conf_matrix = np.zeros((15, 15), dtype=int)
+    model.eval()
+    precision = []
+    recall = []
+
+    with torch.no_grad():
+        for data, label in testLoader:
+            data = data.to(device)
+            label = label.to(device)
+
+            pred = model(data)
+            conf_matrix[pred.argmax(1)][label.argmax(1)] +=1
+
+        print(conf_matrix)
+        #precision
+        for t in range(conf_matrix.shape[1]):
+    
+            p = conf_matrix[t][t] /conf_matrix[t].sum()
+            precision.append(p)
+
+            r = conf_matrix[t][t] / conf_matrix[:][t].sum()
+            recall.append(r)
+        
+    avgPrecision = sum(precision) / len(conf_matrix[0])
+    avgRecall = sum(recall) / len(conf_matrix[0])
+    f1Score = 2 * ((avgPrecision * avgRecall) / (avgPrecision + avgRecall))
+
+    return avgPrecision, avgRecall, f1Score   
+
+
 #prediction
 def prediction(sample, label, model):
     model.eval()
-
+    
     with torch.no_grad():
         pred = model(sample)
-        if pred.argmax(1) == label:
+        print(f"pred: {pred.argmax(1)}, actual: {label.argmax(1)}")
+        if pred.argmax(1) == label.argmax(1):
             print("The predicton is correct.")
         else:
             print("The prediction is wrong.")
-    print(model)
 
 
 if __name__ == "__main__":
     #check gpu
-    use_cuda = torch.cuda.is_available()
-    device = torch.device('cuda:0' if use_cuda else "cpu")
-    print(device)
+use_cuda = torch.cuda.is_available()
+device = torch.device('cuda:0' if use_cuda else "cpu")
+print(device)
 
-    annotation_file = "test_annotation.csv"
-    data_dir = "./"
-    batch_size = 1
+annotation_file = "test_annotation.csv"
+data_dir = "./"
+batch_size = 1
     
-    #dataset
-    mydataset = CustomDataset(annotation_file , data_dir, transform=myTransformer())
-    trainset = DataLoader(mydataset, batch_size=batch_size)
-    sample, label = next(iter(trainset))
-    print("next dataloader", sample.shape)
+#dataset
+mydataset = CustomDataset(annotation_file , data_dir, transform=myTransformer())
+trainLoader = DataLoader(mydataset, batch_size=batch_size)
+sample, label = next(iter(trainLoader))
+print("next dataloader", sample.shape, label.shape)
 
-    #model
-    myModel = CustomNeuralNetwork().to(device)
-    # print(myModel)
+#model
+myModel = CustomNeuralNetwork().to(device)
+# print(myModel)
 
-    #training
-    epochs = 100
-    criterion = nn.CrossEntropyLoss()
-    optimization = torch.optim.SGD(myModel.parameters(), lr=0.01)
-    best_loss = 100
+#training
+epochs = 100
+criterion = nn.CrossEntropyLoss()
+optimization = torch.optim.SGD(myModel.parameters(), lr=0.01)
+best_loss = 100
+    
+train_loss = []
+test_loss = []
+train_accuracy = []
+test_accuracy = []
 
-    for epoch_num in range(epochs):
-        loss = training(trainset, myModel, criterion, optimization)
+for epoch_num in range(epochs):
+    accuracy, loss = training(trainLoader, myModel, criterion, optimization)
+    train_loss.append(loss)
+    train_accuracy.append(accuracy)
 
-        print(f"Epoch: {epoch_num} / {epochs}, Loss: {loss}")
+    print(f"\nEpoch: {epoch_num} / {epochs - 1}, Accuarcy: {accuracy} Loss: {loss}")
 
-        if epoch_num % 10 == 0:
-            accuracy, test_loss = test(trainset, myModel, criterion, optimization)
-            print(f"Evaluation: \n, Accuracy: {accuracy}, Loss: {test_loss}")
+    accuracy, loss = test(trainLoader, myModel, criterion, optimization)
+    test_loss.append(loss)
+    test_accuracy.append(accuracy)
+    print(f"Evaluation: [Accuracy: {accuracy}, Loss: {loss}]")
         
-        if test_loss < best_loss:
-            torch.save(myModel.state_dict, "./save/epoch_" + str(epoch_num) + ".pth")
-            print("The best model state updated.")
+    if loss < best_loss:
+        best_epoc = epoch_num
+        best_model = myModel.state_dict()
+        print("The best model state updated.")
 
-    #draw plot with best model
-    best_model = CustomNeuralNetwork()
-    best_model.load_state_dict(torch.load(os.listdir("./save")[-1]))
-    prediction(sample, label, best_model)
+torch.save(best_model, "./save/epoch_" + str(best_epoc) + ".pth")
+
+#draw plot with best model
+best_model = CustomNeuralNetwork()
+state_path = os.path.join("./save", os.listdir("./save")[-1])
+best_model.load_state_dict(torch.load(state_path))
+prediction(sample, label, best_model)
+
+
+xmin = 0
+xmax = max(len(train_loss), len(test_loss))
+ymin = min(min(train_loss), min(test_loss))
+ymax = max(max(train_loss), max(test_loss))
+
+
+plt.title("LOSS")
+plt.axis([0, xmax, ymin, ymax])
+plt.plot(train_loss, label="train", color='red')
+plt.plot(test_loss, label="validation", color="blue")
+plt.legend()
+plt.savefig('loss.png')
+plt.show()
+
+plt.title("ACCURACY")
+plt.axis([0, xmax, min(min(train_accuracy), min(test_accuracy)), max(max(train_accuracy), max(test_accuracy))])
+plt.plot(train_accuracy, label="train", color='red')
+plt.plot(test_accuracy, label="validation", color="blue")
+plt.legend()
+plt.savefig('loss.png')
+plt.show()
+
+precision, recall, f1 = F1Score(trainLoader, best_model)
+print(f"Average precision:{precision}, Average recall:{recall}, F1 Score:{f1}")
+
+
+
 ```
 
 
