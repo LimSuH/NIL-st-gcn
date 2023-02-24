@@ -392,8 +392,11 @@ print(f"Average precision:{precision}, Average recall:{recall}, F1 Score:{f1}")
 **2. angle 데이터 analyzation**
 - 마찬가지로 기존에 만들어 놓은 analyzation 코드 활용, 프레임 분포 알아내기
 - 프레임 자르기/패딩의 기준 확립
-- 자르기 : 최솟값, 최빈값, 최대값
+- 자르기 : 최솟값, 최빈값, 최대값 
 - 패딩 : 제로 패딩, 마지막 프레임 연장, 영상 반복
+- 자르기와 패딩에 있어... 중간 프레임을 솎아내거나 추가하는 방식  
+  자르기의 경우 n번째마다의 프레임을 삭제
+  패딩의 경우 n번째마다 앞 혹은 뒤의 프레임을 복사해 추가
 
 **3. preprocessing code(with argparse)**
 - 데이터 subset 생성
