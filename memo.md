@@ -381,4 +381,23 @@ print(f"Average precision:{precision}, Average recall:{recall}, F1 Score:{f1}")
 /users/suhyeon/GitHub/NIL-st-gcn/simple-chal-slr/analization/jupyter/about_frame.ipynb --> Keypoints-removal 데이터를 기준으로 frame 분포 정보를 확인한 jupyter notebook  
 살펴보고 어떤 값을 기준으로 프레임 길이를 정할지 결정  
 **프레임 패딩 방법**
+</br>
 
+##### 이번주 목표(2.22~) #####  
+1. angle 기반 데이터셋 생성
+- simple-chal-slr 안의 csv 두개 기반
+- 사전에 만들어놓은 각도 생성 코드 활용(visualization 확인해보기)
+- 일단 전체 데이터 생성
+
+2. angle 데이터 analyzation
+- 마찬가지로 기존에 만들어 놓은 analyzation 코드 활용, 프레임 분포 알아내기
+- 프레임 자르기/패딩의 기준 확립
+- 자르기 : 최솟값, 최빈값, 최대값
+- 패딩 : 제로 패딩, 마지막 프레임 연장, 영상 반복
+
+3. preprocessing code(with argparse)
+- 데이터 subset 생성
+- 자르기와 패딩방법을 조합하여 총 6개의 데이터 셋을 만들어냄
+
+4. 데이터 학습
+- 6 가지 데이터셋을 학습하고 결과 비교
