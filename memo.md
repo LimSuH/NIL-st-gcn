@@ -404,3 +404,7 @@ print(f"Average precision:{precision}, Average recall:{recall}, F1 Score:{f1}")
 
 **4. 데이터 학습**
 - 6 가지 데이터셋을 학습하고 결과 비교
+
+###### preprocessing pipeline ######  
+![image](https://user-images.githubusercontent.com/82634312/221242840-2e3bbbdd-7335-4d62-968e-5b2a592ccf52.png)
+
