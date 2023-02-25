@@ -385,7 +385,7 @@ print(f"Average precision:{precision}, Average recall:{recall}, F1 Score:{f1}")
 
 ##### 이번주 목표(2.22~) #####  
 **1. angle 기반 데이터셋 생성**
-- simple-chal-slr 안의 csv 두개 기반
+- /dataset/KETI_SignLanguage/Video/0001~3000 로 subset 형성
 - 사전에 만들어놓은 각도 생성 코드 활용(visualization 확인해보기)
 - 일단 전체 데이터 생성
 
