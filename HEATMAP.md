@@ -79,7 +79,8 @@ def get_an_aug():
 
 ### heatmap score J 생성
 
-![image](https://user-images.githubusercontent.com/82634312/231936531-0c77a528-e9b5-407a-9e73-6c8b900832c2.png)
+![image](https://user-images.githubusercontent.com/82634312/231936640-d39edab8-2dd3-4e43-a03f-848161a3b367.png)
+
 
 
 ```jsx
