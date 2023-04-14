@@ -113,36 +113,36 @@ for center, max_value in zip(centers, max_values):
 - 알맞은 데이터 형태 생성(pkl파일)
 
 <aside>
-💡 KETI.pkl
-     |
-     |__________Split
-     |                  |______train
-     |                  |______test
-     |
-     |
-     |__________annotation
-                             |
-                             |___________frame_dir
-                             |
-                             |___________label(index mapping)
-                             |
-                             |___________img_shape
-                             |
-                             |___________original_shape
-                             |
-                             |___________total_frames
-                             |
-                             |___________num_person_raw
-                             |
-                             |___________keypoint
-                             |
-                             |___________keypoint_score
+💡 KETI.pkl  
+     |  
+     |__________Split  
+     |                  |______train  
+     |                  |______test  
+     |  
+     |  
+     |__________annotation  
+                             |  
+                             |___________frame_dir  
+                             |  
+                             |___________label(index mapping)  
+                             |  
+                             |___________img_shape  
+                             |  
+                             |___________original_shape  
+                             |  
+                             |___________total_frames  
+                             |  
+                             |___________num_person_raw  
+                             |  
+                             |___________keypoint  
+                             |  
+                             |___________keypoint_score  
 
 </aside>
 
 위와 같은 형태로 생성하는 함수
 
-~~기존 건 써먹을수가 없어 떼잉쯧
+
 
 ### 필요한 것
 
