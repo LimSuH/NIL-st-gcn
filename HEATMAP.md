@@ -79,7 +79,8 @@ def get_an_aug():
 
 ### heatmap score J 생성
 
-![Untitled](Representation%20with%20heatmap%209e82bd400dd2451a8f8c29882667ac5d/Untitled.png)
+![image](https://user-images.githubusercontent.com/82634312/231936531-0c77a528-e9b5-407a-9e73-6c8b900832c2.png)
+
 
 ```jsx
 for center, max_value in zip(centers, max_values):
@@ -112,33 +113,8 @@ for center, max_value in zip(centers, max_values):
 
 - 알맞은 데이터 형태 생성(pkl파일)
 
-<aside>
-💡 KETI.pkl  
-     |  
-     |__________Split  
-     |                  |______train  
-     |                  |______test  
-     |  
-     |  
-     |__________annotation  
-                             |  
-                             |___________frame_dir  
-                             |  
-                             |___________label(index mapping)  
-                             |  
-                             |___________img_shape  
-                             |  
-                             |___________original_shape  
-                             |  
-                             |___________total_frames  
-                             |  
-                             |___________num_person_raw  
-                             |  
-                             |___________keypoint  
-                             |  
-                             |___________keypoint_score  
+![image](https://user-images.githubusercontent.com/82634312/231936479-aaf81fff-0b25-4780-acb0-0a13a59fb692.png)
 
-</aside>
 
 위와 같은 형태로 생성하는 함수
 
